@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 
+//test
 const Stack = createNativeStackNavigator();
 
 export default function App() {
