@@ -2,14 +2,15 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import SplashPage from "./pages/SplashPage";
 
-//test by jessis
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Splash" component={SplashPage} />
         <Stack.Screen
           options={{ headerShown: false }}
           name="Login"

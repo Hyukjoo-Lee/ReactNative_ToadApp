@@ -7,10 +7,13 @@ import {
   View,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import { auth } from "../firebase";
-import { useNavigation } from "@react-navigation/native";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 const styles = StyleSheet.create({
   container: {
@@ -59,6 +62,9 @@ const styles = StyleSheet.create({
   },
 });
 
+/**
+ * Login Page
+ */
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -69,7 +75,7 @@ const LoginPage = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        navigation.replace("Home");
+        navigation.navigate("Home");
       }
     });
 
