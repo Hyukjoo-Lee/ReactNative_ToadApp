@@ -4,10 +4,6 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SplashPage from "./pages/SplashPage";
 
-<<<<<<< HEAD
-//test by jessi
-=======
->>>>>>> 4d67918670b830ee5463f68d4b70d74516aad2a9
 const Stack = createNativeStackNavigator();
 
 export default function App() {
