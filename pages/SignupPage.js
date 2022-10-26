@@ -13,12 +13,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
   // Profile image container
   container_1: {
-    flex: "0.3",
-    borderWidth: "1",
-    borderColor: "black",
+    flex: 0.3,
     justifyContent: "center",
   },
   profileImg: {
@@ -27,24 +24,21 @@ const styles = StyleSheet.create({
     margin: 10,
     backgroundColor: "lightgray",
   },
-
   // Explanation container
   container_2: {
-    flex: "1",
-    borderWidth: "1",
-    borderColor: "black",
+    flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
   },
   title: {
     marginBottom: "1%",
-    opacity: "0.6",
+    opacity: 0.6,
     fontWeight: "500",
     fontSize: 32,
   },
   description: {
-    opacity: "0.6",
-    fontSize: "16px",
+    opacity: 0.6,
+    fontSize: 16,
     width: "75%",
     minheight: "4%",
     textAlign: "center",
@@ -55,12 +49,9 @@ const styles = StyleSheet.create({
     height: 160,
     backgroundColor: "lightgray",
   },
-
   // Email field container
   container_3: {
-    flex: "0.6",
-    borderWidth: "1",
-    borderColor: "black",
+    flex: 0.6,
     margin: 20,
   },
   emailText: {
@@ -96,9 +87,7 @@ const styles = StyleSheet.create({
   },
   // Authentification field container
   container_4: {
-    flex: "0.6",
-    borderWidth: "1",
-    borderColor: "black",
+    flex: 0.9,
     marginTop: 10,
     marginLeft: 20,
     marginRight: 20,
@@ -111,7 +100,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: "center",
     alignItems: "center",
-    marginTop: 15,
   },
   facebookButton: {
     backgroundColor: "lightgray",
@@ -151,7 +139,7 @@ const SingUpPage = () => {
       </View>
       {/* Explanation */}
       <View style={styles.container_2}>
-        <Text style={styles.title}>Create your account</Text>
+        <Text style={styles.title}>Creassste your account</Text>
         <Text style={styles.description}>
           simply dummy text of the printing and typesetting industry. Lorem
           Ipsum
@@ -189,7 +177,7 @@ const SingUpPage = () => {
               flex: 1,
               height: 1,
               backgroundColor: "black",
-              opacity: "0.3",
+              opacity: 0.3,
             }}
           />
           <View>
@@ -202,7 +190,7 @@ const SingUpPage = () => {
               flex: 1,
               height: 1,
               backgroundColor: "black",
-              opacity: "0.3",
+              opacity: 0.3,
             }}
           />
         </View>

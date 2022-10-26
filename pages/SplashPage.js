@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
   },
   title: {
     marginBottom: "3%",
-    opacity: "0.6",
+    opacity: 0.6,
     fontWeight: "500",
-    fontSize: "36px",
+    fontSize: 36,
   },
   description: {
-    opacity: "0.6",
-    fontSize: "16px",
+    opacity: 0.6,
+    fontSize: 16,
     width: "75%",
     minheight: "4%",
     textAlign: "center",
@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     // image size should be edited
     width: "100%",
   },
-
   button: {
     backgroundColor: "lightgray",
     width: "85%",
@@ -67,6 +66,7 @@ const SplashPage = () => {
 
   // Move to Signup page
   const handleSignUp = () => {
+    console.warn("create!");
     navigation.navigate("SignUp");
   };
 

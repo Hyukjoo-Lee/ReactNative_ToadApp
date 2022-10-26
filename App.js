@@ -11,8 +11,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="SignUp" component={SingUpPage} />
         <Stack.Screen name="Splash" component={SplashPage} />
+        <Stack.Screen name="SignUp" component={SingUpPage} />
         <Stack.Screen
           options={{ headerShown: false }}
           name="Login"
