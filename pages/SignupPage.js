@@ -8,6 +8,8 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import { auth } from "../firebase";
 
 const styles = StyleSheet.create({
   container: {
@@ -124,6 +126,11 @@ const styles = StyleSheet.create({
  * Signup Page
  */
 const SingUpPage = () => {
+  GoogleSignin.configure({
+    webClientId:
+      "138508252713-26j1f45n8lj8blb212pkntvhsf2mj00h.apps.googleusercontent.com",
+  });
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -139,7 +146,7 @@ const SingUpPage = () => {
       </View>
       {/* Explanation */}
       <View style={styles.container_2}>
-        <Text style={styles.title}>Creassste your account</Text>
+        <Text style={styles.title}>Create your account</Text>
         <Text style={styles.description}>
           simply dummy text of the printing and typesetting industry. Lorem
           Ipsum

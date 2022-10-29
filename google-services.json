@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "138508252713",
+    "project_id": "toad-43336",
+    "storage_bucket": "toad-43336.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138508252713:android:971edcbda49500cd0dce38",
+        "android_client_info": {
+          "package_name": "com.jaycoding.toad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "138508252713-5khvtsop2ptoa4k07i4utk1egqjv2n3l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jaycoding.toad",
+            "certificate_hash": "9df2cbdd1d9292a70b2569dfebc45ae09ccefc5d"
+          }
+        },
+        {
+          "client_id": "138508252713-dooq87iq1je3eta0dr245436h6ri8jtl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jaycoding.toad",
+            "certificate_hash": "a8edd9962f1da84a66efbb4ac5d3b546e88194a3"
+          }
+        },
+        {
+          "client_id": "138508252713-26j1f45n8lj8blb212pkntvhsf2mj00h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-lxaPz6gNhfSBZ4XpQ-5u7CGm6X2y7y0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "138508252713-26j1f45n8lj8blb212pkntvhsf2mj00h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "138508252713-qjt9ee8569vnhm6igh3ppitlmpfd1uor.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jaycoding.toad"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

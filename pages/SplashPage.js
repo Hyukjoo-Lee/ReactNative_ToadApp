@@ -66,7 +66,6 @@ const SplashPage = () => {
 
   // Move to Signup page
   const handleSignUp = () => {
-    console.warn("create!");
     navigation.navigate("SignUp");
   };
 
@@ -90,17 +89,13 @@ const SplashPage = () => {
             }
           />
         </View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText} onPress={handleSignUp}>
-            Create new account
-          </Text>
+        <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+          <Text style={styles.buttonText}>Create new account</Text>
         </TouchableOpacity>
         <Text style={styles.loginText}>
           Do you have an accout?{" "}
-          <TouchableOpacity>
-            <Text onPress={handleLogin} style={{ fontWeight: "bold" }}>
-              Log In
-            </Text>
+          <TouchableOpacity onPress={handleLogin}>
+            <Text style={{ fontWeight: "bold" }}>Log In</Text>
           </TouchableOpacity>
         </Text>
       </View>

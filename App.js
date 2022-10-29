@@ -1,5 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import "expo-dev-client";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SingUpPage from "./pages/SignupPage";
