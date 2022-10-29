@@ -8,8 +8,6 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { GoogleSignin } from "@react-native-google-signin/google-signin";
-import { auth } from "../firebase";
 
 const styles = StyleSheet.create({
   container: {
@@ -126,11 +124,6 @@ const styles = StyleSheet.create({
  * Signup Page
  */
 const SingUpPage = () => {
-  GoogleSignin.configure({
-    webClientId:
-      "138508252713-26j1f45n8lj8blb212pkntvhsf2mj00h.apps.googleusercontent.com",
-  });
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -216,24 +209,25 @@ const SingUpPage = () => {
         </TouchableOpacity>
       </View>
     </View>
-    // <KeyboardAvoidingView style={styles.container} behavior="padding">
-    //   <View style={styles.inputContainer}>
-    //     <TextInput
-    //       placeholder="Email"
-    //       value={email}
-    //       onChangeText={(text) => setEmail(text)}
-    //       style={styles.input}
-    //     />
-    //     <TextInput
-    //       placeholder="Password"
-    //       value={password}
-    //       onChangeText={(text) => setPassword(text)}
-    //       style={styles.input}
-    //       secureTextEntry
-    //     />
-    //   </View>
-    // </KeyboardAvoidingView>
   );
+
+  // <KeyboardAvoidingView style={styles.container} behavior="padding">
+  //   <View style={styles.inputContainer}>
+  //     <TextInput
+  //       placeholder="Email"
+  //       value={email}
+  //       onChangeText={(text) => setEmail(text)}
+  //       style={styles.input}
+  //     />
+  //     <TextInput
+  //       placeholder="Password"
+  //       value={password}
+  //       onChangeText={(text) => setPassword(text)}
+  //       style={styles.input}
+  //       secureTextEntry
+  //     />
+  //   </View>
+  // </KeyboardAvoidingView>
 };
 
 export default SingUpPage;
