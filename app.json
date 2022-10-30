@@ -17,18 +17,30 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "ios": {
+      "bundleIdentifier": "com.jaycoding.toad",
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "supportsTablet": true
+    },
     "android": {
+      "package": "com.jaycoding.toad",
+      "googleServicesFile": "./google-services.json",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
-    "ios": {
-      "supportsTablet": true
-    },
+    "plugins": [
+      "@react-native-google-signin/google-signin"
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6afb612c-99df-4900-8f90-fb3378fbf061"
+      }
     }
   }
 }

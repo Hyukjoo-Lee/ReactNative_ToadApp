@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SingUpPage from "./pages/SignupPage";
 import SplashPage from "./pages/SplashPage";
+import "expo-dev-client";
 
 const Stack = createNativeStackNavigator();
 
