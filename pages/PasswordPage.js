@@ -9,7 +9,7 @@ import {
     TouchableOpacity,
   } from "react-native";
 
-const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
     container: {
       flex: 1,
     },
@@ -28,12 +28,13 @@ const styles = StyleSheet.create({
       backgroundColor: "lightgray",
     },
   
-    // Explanation container
+    // Password field container
     container_2: {
-      flex: "1",
+      flex: "0.6",
       borderWidth: "1",
       borderColor: "black",
-      alignItems: "center",
+      //alignItems: "center",
+      margin : 20,
       justifyContent: "flex-start",
     },
     title: {
@@ -42,15 +43,7 @@ const styles = StyleSheet.create({
       fontWeight: "500",
       fontSize: 32,
     },
-  
-    // Email field container
-    container_3: {
-      flex: "0.6",
-      borderWidth: "1",
-      borderColor: "black",
-      margin: 20,
-    },
-    emailText: {
+    passwordText: {
       marginLeft: 10,
       fontSize: 10,
       color: "#979797",
@@ -62,11 +55,32 @@ const styles = StyleSheet.create({
     input: {
       width: "100%",
       backgroundColor: "white",
+      fontStyle: "italic",
+      color: "#979797",
       paddingHorizontal: 15,
       borderWidth: 0.2,
       paddingVertical: 10,
       borderRadius: 7,
       marginTop: 5,
+    },
+  
+    // Empty container
+    container_3: {
+      flex: "0.6",
+      borderWidth: "1",
+      borderColor: "black",
+      margin: 20,
+    },
+
+    // Next Button container
+    container_4: {
+      flex: "0.6",
+      borderWidth: "1",
+      borderColor: "black",
+      marginTop: 10,
+      marginLeft: 20,
+      marginRight: 20,
+      marginBottom: 20,
     },
     nextButton: {
       backgroundColor: "lightgray",
@@ -81,7 +95,7 @@ const styles = StyleSheet.create({
       color: "black",
       fontSize: 16,
     },
-  });
+});
 
 /**
  * Password Page by Jessi
@@ -108,30 +122,34 @@ const PasswordPage = () => {
             <Image style={styles.profileImg}></Image>
         </View>
 
-        {/* Explanation */}
+        {/* Password field container */}
         <View style={styles.container_2}>
-            <Text style={styles.title}>Set your password</Text>
+          <Text style={styles.title}>Set your password</Text>
+
+          <Text style={styles.passwordText}>Password</Text>
+
+          <KeyboardAvoidingView style={styles.inputContainer}>
+              <TextInput
+                  placeholder="At least 8 charaters "
+                  onChangeText={(text) => setPassword(text)}
+                  style={styles.input}
+              />
+          </KeyboardAvoidingView>
         </View>
 
-        {/* Password field */}
-        <View style={styles.container_3}>
-            <Text style={styles.emailText}>Password</Text>
-        
-            <KeyboardAvoidingView style={styles.inputContainer}>
-                <TextInput
-                    placeholder="At least 8 charaters "
-                    onChangeText={(text) => setPassword(text)}
-                    style={styles.input}
-                />
-            </KeyboardAvoidingView>
-            
+        {/* Empty container */}
+        <View style={styles.container_3}>          
+        </View>
+
+        {/* Next Button container*/}
+        <View style={styles.container_4}>
             <TouchableOpacity style={styles.nextButton}>
                 <Text style={styles.nextButtonText} onPress={handleSignUp}>
                     Next
                 </Text>
             </TouchableOpacity>
+        </View>
 
-            </View>
     </View>
   );
 };
