@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgray",
   },
 
-  // Password field
+  // Explanation container
   container_2: {
     flex: "1",
     borderWidth: "1",
