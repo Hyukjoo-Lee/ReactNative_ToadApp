@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
   },
   title: {
     marginBottom: "3%",
-    opacity: "0.6",
+    opacity: 0.6,
     fontWeight: "500",
-    fontSize: "36px",
+    fontSize: 36,
   },
   description: {
-    opacity: "0.6",
-    fontSize: "16px",
+    opacity: 0.6,
+    fontSize: 16,
     width: "75%",
     minheight: "4%",
     textAlign: "center",
@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     // image size should be edited
     width: "100%",
   },
-
   button: {
     backgroundColor: "lightgray",
     width: "85%",
@@ -90,17 +89,13 @@ const SplashPage = () => {
             }
           />
         </View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText} onPress={handleSignUp}>
-            Create new account
-          </Text>
+        <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+          <Text style={styles.buttonText}>Create new account</Text>
         </TouchableOpacity>
         <Text style={styles.loginText}>
           Do you have an accout?{" "}
-          <TouchableOpacity>
-            <Text onPress={handleLogin} style={{ fontWeight: "bold" }}>
-              Log In
-            </Text>
+          <TouchableOpacity onPress={handleLogin}>
+            <Text style={{ fontWeight: "bold" }}>Log In</Text>
           </TouchableOpacity>
         </Text>
       </View>
