@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   KeyboardAvoidingView,
@@ -8,6 +8,8 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../components/config";
 
 const styles = StyleSheet.create({
   container: {
@@ -123,13 +125,27 @@ const styles = StyleSheet.create({
 /**
  * Signup Page
  */
-const SingUpPage = () => {
+const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignUp = () => {
-    console.warn("jump to password");
+  const handleSignUp = () => {};
+
+  const signUpwithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        console.warn(user.displayName);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode + ": " + errorMessage);
+      });
   };
+
+  const signInwithGoogle = () => {};
 
   return (
     <View style={styles.container}>
@@ -157,10 +173,8 @@ const SingUpPage = () => {
             style={styles.input}
           />
         </KeyboardAvoidingView>
-        <TouchableOpacity style={styles.nextButton}>
-          <Text style={styles.nextButtonText} onPress={handleSignUp}>
-            Next
-          </Text>
+        <TouchableOpacity style={styles.nextButton} onPress={handleSignUp}>
+          <Text style={styles.nextButtonText}>Next</Text>
         </TouchableOpacity>
 
         {/* A horizontal line with OR text*/}
@@ -198,6 +212,16 @@ const SingUpPage = () => {
       {/* Authentification field */}
       <View style={styles.container_4}>
         <TouchableOpacity style={styles.googleButton}>
+          <Text style={styles.authButtonText} onPress={signUpwithGoogle}>
+            Sign up with your Google Testing
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.googleButton}>
+          <Text style={styles.authButtonText} onPress={signInwithGoogle}>
+            Sign in with your Google Testing
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.googleButton}>
           <Text style={styles.authButtonText} onPress={handleSignUp}>
             Sign up with your Google
           </Text>
@@ -230,4 +254,4 @@ const SingUpPage = () => {
   // </KeyboardAvoidingView>
 };
 
-export default SingUpPage;
+export default SignUpPage;
