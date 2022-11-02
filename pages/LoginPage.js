@@ -9,11 +9,11 @@ import {
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-import { auth } from "../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { auth } from "../components/config";
 
 const styles = StyleSheet.create({
   container: {

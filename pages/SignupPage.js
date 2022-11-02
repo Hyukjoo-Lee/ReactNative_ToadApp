@@ -169,6 +169,17 @@ const SignUpPage = () => {
       });
   };
 
+  const handleGoogleSignout = async () => {
+    try {
+      await GoogleSignin.revokeAccess();
+      await auth().signOut();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleSignUp = () => {};
+
   if (initializing) return null;
 
   if (!user) {
@@ -279,6 +290,12 @@ const SignUpPage = () => {
         <Text style={{ fontSize: 28, fontWeight: "bold" }}>
           Welcome {user.displayName}
         </Text>
+        <TouchableOpacity
+          style={styles.googleButton}
+          onPress={handleGoogleSignout}
+        >
+          <Text style={styles.authButtonText}>Google Sign out</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

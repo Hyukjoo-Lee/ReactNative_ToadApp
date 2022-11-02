@@ -3,7 +3,15 @@
     "name": "toad",
     "slug": "toad",
     "version": "1.0.0",
-    "plugins": ["@react-native-google-signin/google-signin"],
+    "plugins": [["@react-native-google-signin/google-signin"]
+    ,[
+      "react-native-fbsdk-next",
+      {
+        "appID": "670908454661037",
+        "clientToken": "4877a458b2affbd5103f100c7f6d3b27",
+        "displayName": "Toad"
+      }
+    ]],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

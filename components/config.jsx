@@ -1,5 +1,7 @@
-// import { initializeApp } from "firebase/app";
 // import { getAuth, GoogleAuthProvider } from "firebase/auth";
+// import firebase from "firebase/compat/app";
+// import "firebase/compat/auth";
+// import "firebase/compat/firestore";
 
 // const firebaseConfig = {
 //   apiKey: "AIzaSyB1ci8VN1bscpYW9Y2jhVNlO5wpgdaxdqA",
@@ -11,7 +13,12 @@
 //   measurementId: "G-SE11ZG7ZXE",
 // };
 
-// export const app = initializeApp(firebaseConfig);
-// export const auth = getAuth(app);
+// if (!firebase.apps.length) {
+//   app = firebase.initializeApp(firebaseConfig);
+// } else {
+//   console.warn(app + "is not initialized");
+// }
 
+// export const auth = getAuth(app);
+// export { firebase };
 // export const provider = new GoogleAuthProvider(app);
