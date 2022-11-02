@@ -17,8 +17,6 @@ const styles = StyleSheet.create({
   // Profile image container
   container_1: {
     flex: 0.3,
-    borderWidth: 1,
-    borderColor: "black",
     justifyContent: "center",
   },
   profileImg: {

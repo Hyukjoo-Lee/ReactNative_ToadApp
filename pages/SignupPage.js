@@ -8,8 +8,11 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../components/config";
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+} from "@react-native-google-signin/google-signin";
+import auth from "@react-native-firebase/auth";
 
 const styles = StyleSheet.create({
   container: {
@@ -126,132 +129,159 @@ const styles = StyleSheet.create({
  * Signup Page
  */
 const SignUpPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
 
-  const handleSignUp = () => {};
+  GoogleSignin.configure({
+    webClientId:
+      "138508252713-26j1f45n8lj8blb212pkntvhsf2mj00h.apps.googleusercontent.com",
+  });
 
-  const signUpwithGoogle = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        console.warn(user.displayName);
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  const onGoogleButtonPress = async () => {
+    // Check if your device supports Google Play
+    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
+
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    // Sign-in the user with the credential
+    const user_sign_in = auth().signInWithCredential(googleCredential);
+    user_sign_in
+      .then((user) => {
+        console.log(user);
       })
       .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + ": " + errorMessage);
+        console.log(error);
       });
   };
 
-  const signInwithGoogle = () => {};
+  if (initializing) return null;
 
-  return (
-    <View style={styles.container}>
-      {/* Profile image container */}
-      <View style={styles.container_1}>
-        <Image style={styles.profileImg}></Image>
-      </View>
-      {/* Explanation */}
-      <View style={styles.container_2}>
-        <Text style={styles.title}>Create your account</Text>
-        <Text style={styles.description}>
-          simply dummy text of the printing and typesetting industry. Lorem
-          Ipsum
-        </Text>
-        {/* Profile Image View */}
-        <View style={styles.imageField} />
-      </View>
-      {/* Email field */}
-      <View style={styles.container_3}>
-        <Text style={styles.emailText}>Email</Text>
-        <KeyboardAvoidingView style={styles.inputContainer}>
-          <TextInput
-            placeholder="abc@gmail.com"
-            onChangeText={(text) => setEmail(text)}
-            style={styles.input}
-          />
-        </KeyboardAvoidingView>
-        <TouchableOpacity style={styles.nextButton} onPress={handleSignUp}>
-          <Text style={styles.nextButtonText}>Next</Text>
-        </TouchableOpacity>
+  if (!user) {
+    return (
+      <View style={styles.container}>
+        {/* Profile image container */}
+        <View style={styles.container_1}>
+          <Image style={styles.profileImg}></Image>
+        </View>
+        {/* Explanation */}
+        <View style={styles.container_2}>
+          <Text style={styles.title}>Create your account</Text>
+          <Text style={styles.description}>
+            simply dummy text of the printing and typesetting industry. Lorem
+            Ipsum
+          </Text>
+          {/* Profile Image View */}
+          <View style={styles.imageField} />
+        </View>
+        {/* Email field */}
+        <View style={styles.container_3}>
+          <Text style={styles.emailText}>Email</Text>
+          <KeyboardAvoidingView style={styles.inputContainer}>
+            <TextInput
+              placeholder="abc@gmail.com"
+              onChangeText={(text) => setEmail(text)}
+              style={styles.input}
+            />
+          </KeyboardAvoidingView>
+          <TouchableOpacity style={styles.nextButton} onPress={handleSignUp}>
+            <Text style={styles.nextButtonText}>Next</Text>
+          </TouchableOpacity>
 
-        {/* A horizontal line with OR text*/}
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginTop: 10,
-          }}
-        >
+          {/* A horizontal line with OR text*/}
           <View
             style={{
-              flex: 1,
-              height: 1,
-              backgroundColor: "black",
-              opacity: 0.3,
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              marginTop: 10,
             }}
-          />
-          <View>
-            <Text style={{ width: 70, textAlign: "center", color: "black" }}>
-              OR
-            </Text>
+          >
+            <View
+              style={{
+                flex: 1,
+                height: 1,
+                backgroundColor: "black",
+                opacity: 0.3,
+              }}
+            />
+            <View>
+              <Text style={{ width: 70, textAlign: "center", color: "black" }}>
+                OR
+              </Text>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                height: 1,
+                backgroundColor: "black",
+                opacity: 0.3,
+              }}
+            />
           </View>
-          <View
-            style={{
-              flex: 1,
-              height: 1,
-              backgroundColor: "black",
-              opacity: 0.3,
-            }}
+        </View>
+        {/* Authentification field */}
+        <View style={styles.container_4}>
+          <GoogleSigninButton
+            style={styles.googleButton}
+            onPress={onGoogleButtonPress}
           />
+          <TouchableOpacity style={styles.googleButton}>
+            <Text style={styles.authButtonText} onPress={handleSignUp}>
+              Sign up with your Google
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.facebookButton}>
+            <Text style={styles.authButtonText} onPress={handleSignUp}>
+              Sign up with your Facebook
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
-      {/* Authentification field */}
-      <View style={styles.container_4}>
-        <TouchableOpacity style={styles.googleButton}>
-          <Text style={styles.authButtonText} onPress={signUpwithGoogle}>
-            Sign up with your Google Testing
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.googleButton}>
-          <Text style={styles.authButtonText} onPress={signInwithGoogle}>
-            Sign in with your Google Testing
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.googleButton}>
-          <Text style={styles.authButtonText} onPress={handleSignUp}>
-            Sign up with your Google
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.facebookButton}>
-          <Text style={styles.authButtonText} onPress={handleSignUp}>
-            Sign up with your Facebook
-          </Text>
-        </TouchableOpacity>
+    );
+
+    // <KeyboardAvoidingView style={styles.container} behavior="padding">
+    //   <View style={styles.inputContainer}>
+    //     <TextInput
+    //       placeholder="Email"
+    //       value={email}
+    //       onChangeText={(text) => setEmail(text)}
+    //       style={styles.input}
+    //     />
+    //     <TextInput
+    //       placeholder="Password"
+    //       value={password}
+    //       onChangeText={(text) => setPassword(text)}
+    //       style={styles.input}
+    //       secureTextEntry
+    //     />
+    //   </View>
+    // </KeyboardAvoidingView>
+  }
+  // if google login is successful, return account name
+  return (
+    <View style={styles.container}>
+      <View style={{ marginTop: 100, alignItems: "center" }}>
+        <Text style={{ fontSize: 28, fontWeight: "bold" }}>
+          Welcome {user.displayName}
+        </Text>
       </View>
     </View>
   );
-
-  // <KeyboardAvoidingView style={styles.container} behavior="padding">
-  //   <View style={styles.inputContainer}>
-  //     <TextInput
-  //       placeholder="Email"
-  //       value={email}
-  //       onChangeText={(text) => setEmail(text)}
-  //       style={styles.input}
-  //     />
-  //     <TextInput
-  //       placeholder="Password"
-  //       value={password}
-  //       onChangeText={(text) => setPassword(text)}
-  //       style={styles.input}
-  //       secureTextEntry
-  //     />
-  //   </View>
-  // </KeyboardAvoidingView>
 };
 
 export default SignUpPage;
