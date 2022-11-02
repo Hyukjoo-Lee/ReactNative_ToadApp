@@ -169,6 +169,9 @@ const SignUpPage = () => {
       });
   };
 
+  const handleSignUp = () => {
+    
+  }
   if (initializing) return null;
 
   if (!user) {
