@@ -1,8 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { auth } from "../firebase";
+import { firebaseAuth } from "../components/config";
 
+/**
+ * This page will be replaced with main page in the future.
+ */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -28,10 +31,10 @@ const HomePage = () => {
   const navigation = useNavigation();
 
   const handleSignout = () => {
-    auth
+    firebaseAuth
       .signOut()
       .then(() => {
-        navigation.replace("Login");
+        navigation.replace("Splash");
       })
       .catch((error) => alert(error.message));
   };
@@ -39,7 +42,7 @@ const HomePage = () => {
   return (
     <View style={styles.container}>
       {/* ? mark means email could be undefined - for the guest mode in the future */}
-      <Text>Email: {auth.currentUser?.email}</Text>
+      <Text>Email: {firebaseAuth.currentUser?.email}</Text>
       <TouchableOpacity style={styles.button} onPress={handleSignout}>
         <Text style={styles.buttonText}>Sign out</Text>
       </TouchableOpacity>
