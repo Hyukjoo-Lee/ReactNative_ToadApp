@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   KeyboardAvoidingView,
   StyleSheet,
   Text,
   TextInput,
-  Image,
   TouchableOpacity,
 } from "react-native";
 // import { GoogleSignin } from "@react-native-google-signin/google-signin";
@@ -21,12 +20,6 @@ const styles = StyleSheet.create({
     flex: 0.3,
     justifyContent: "center",
   },
-  profileImg: {
-    width: "16%",
-    height: "70%",
-    margin: 10,
-    backgroundColor: "lightgray",
-  },
   // Explanation container
   container_2: {
     flex: 1,
@@ -34,8 +27,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   title: {
-    marginBottom: "1%",
-    opacity: 0.6,
+    margin: 20,
     fontWeight: "500",
     fontSize: 32,
   },
@@ -55,7 +47,7 @@ const styles = StyleSheet.create({
   // Email field container
   container_3: {
     flex: 0.6,
-    margin: 20,
+    margin: 10,
   },
   emailText: {
     marginLeft: 10,
@@ -194,18 +186,10 @@ const SignUpPage = () => {
     return (
       <View style={styles.container}>
         {/* Profile image container */}
-        <View style={styles.container_1}>
-          <Image style={styles.profileImg} />
-        </View>
+        <View style={styles.container_1}></View>
         {/* Explanation */}
         <View style={styles.container_2}>
-          <Text style={styles.title}>Create your account</Text>
-          <Text style={styles.description}>
-            simply dummy text of the printing and typesetting industry. Lorem
-            Ipsum
-          </Text>
-          {/* Profile Image View */}
-          <View style={styles.imageField} />
+          <Text style={styles.title}>What's your email address</Text>
         </View>
         {/* Email field */}
         <View style={styles.container_3}>

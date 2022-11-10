@@ -35,9 +35,16 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: 40,
   },
+  btnContainer: {
+    flexDirection: "row",
+    width: "90%",
+  },
   button: {
-    backgroundColor: "lightgray",
-    width: "85%",
+    flex: 1,
+    margin: 10,
+    backgroundColor: "white",
+    borderColor: "#D9D9D9",
+    borderWidth: 1,
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
@@ -59,6 +66,7 @@ const SplashPage = () => {
   // Images in the image slider: should be replaced with others
   const images = [
     require("../assets/splash.png"),
+    "https://s3-alpha-sig.figma.com/img/fd28/4105/8db3722e6692831a4589945742169c60?Expires=1668988800&Signature=NiohfsssYH6a5NUT~LNsyY~ys--KnTVC-evLiNR7FDepIrCATlHpXxjuEutDWeYcB1gOYzNY7aEuI0XhwDJEWOwsgfcHvsxF5bdM7Kmg~DpH68YkeQs6FjjU~9HWrnZP8BhIORFqEgL81DIEK0QxkcbKzNwpHyYtd-Hjo1KeWIjTCmOqvyeErb48LaT~sYHuhAT2fmbdmAsfBCc-SIvVJMkxEYHA5PTXcPuuMrP8VcnG12w-ED~B5jFlznTYUEdTwOl6Q2wPsLC1OArOSFsEqCf6lS33hSfXQXh5CRmzkayLzwjnazylnPbIBAZUp6HWEhXPhHElMhV0Uz~MCq7y8A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
     "https://source.unsplash.com/1024x768/?nature",
     "https://source.unsplash.com/1024x768/?water",
   ];
@@ -69,7 +77,9 @@ const SplashPage = () => {
   };
 
   // Move to Login page
-  const handleLogin = () => {};
+  const handleLogin = () => {
+    navigation.navigate("Login");
+  };
 
   return (
     <View style={styles.container}>
@@ -90,8 +100,11 @@ const SplashPage = () => {
               borderRadius: 15,
               marginHorizontal: 5,
               padding: 0,
-              marginTop: 100,
             }}
+            ImageComponentStyle={{
+              width: "86%",
+            }}
+            imageLoadingColor="#2196F3"
             autoplay
             circleLoop
             onCurrentImagePressed={(index) =>
@@ -100,15 +113,14 @@ const SplashPage = () => {
             }
           />
         </View>
-        <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-          <Text style={styles.buttonText}>Create new account</Text>
-        </TouchableOpacity>
-        <Text style={styles.loginText}>
-          Do you have an accout?{" "}
-          <TouchableOpacity onPress={handleLogin}>
-            <Text style={{ fontWeight: "bold" }}>Log In</Text>
+        <View style={styles.btnContainer}>
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Log In</Text>
           </TouchableOpacity>
-        </Text>
+          <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+            <Text style={styles.buttonText}>Register</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
