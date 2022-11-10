@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "white",
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
@@ -13,20 +14,18 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     flexDirection: "column",
-    border: "1px none",
     alignItems: "center",
     textDecorationColor: "none",
   },
   title: {
     marginBottom: "3%",
-    opacity: 0.6,
     fontWeight: "500",
     fontSize: 36,
   },
   description: {
     opacity: 0.6,
     fontSize: 16,
-    width: "75%",
+    width: "60%",
     minheight: "4%",
     textAlign: "center",
     marginBottom: "5.5%",
@@ -34,6 +33,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     // image size should be edited
     width: "100%",
+    marginTop: 40,
   },
   button: {
     backgroundColor: "lightgray",
@@ -58,10 +58,9 @@ const SplashPage = () => {
 
   // Images in the image slider: should be replaced with others
   const images = [
+    require("../assets/splash.png"),
     "https://source.unsplash.com/1024x768/?nature",
     "https://source.unsplash.com/1024x768/?water",
-    "https://source.unsplash.com/1024x768/?girl",
-    "https://source.unsplash.com/1024x768/?tree",
   ];
 
   // Move to Signup page
@@ -83,6 +82,18 @@ const SplashPage = () => {
         <View style={styles.imageContainer}>
           <SliderBox
             images={images}
+            dotColor="#000000"
+            inactiveDotColor="#737373"
+            dotStyle={{
+              width: 12,
+              height: 12,
+              borderRadius: 15,
+              marginHorizontal: 5,
+              padding: 0,
+              marginTop: 100,
+            }}
+            autoplay
+            circleLoop
             onCurrentImagePressed={(index) =>
               // it moves to proper pages when a image is clicked
               console.warn(`image ${index} pressed`)

@@ -8,11 +8,9 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-} from "@react-native-google-signin/google-signin";
-import auth from "@react-native-firebase/auth";
+// import { GoogleSignin } from "@react-native-google-signin/google-signin";
+// import auth from "@react-native-firebase/auth";
+import { useNavigation } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   container: {
@@ -126,68 +124,78 @@ const styles = StyleSheet.create({
 });
 
 /**
- * Signup Page
+ * Signup Page - Google Login is inactivated temporarily.
+ * Because the expo-google package is officially deprecated by the expo.
+ * We have to use the development build method (For IOS development, Apple Developer membership required).
+ * It will be activated when we deploy our application.
  */
 const SignUpPage = () => {
-  // Set an initializing state whilst Firebase connects
-  const [initializing, setInitializing] = useState(true);
+  const [email, setEmail] = useState("");
+
+  // const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
 
-  GoogleSignin.configure({
-    webClientId:
-      "138508252713-26j1f45n8lj8blb212pkntvhsf2mj00h.apps.googleusercontent.com",
-  });
+  const navigation = useNavigation();
 
-  // Handle user state changes
-  function onAuthStateChanged(user) {
-    setUser(user);
-    if (initializing) setInitializing(false);
-  }
+  // GoogleSignin.configure({
+  //   webClientId:
+  //     "138508252713-26j1f45n8lj8blb212pkntvhsf2mj00h.apps.googleusercontent.com",
+  // });
 
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
+  // useEffect(() => {
+  //   const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+  //   return subscriber; // unsubscribe on unmount
+  // }, []);
 
-  const onGoogleButtonPress = async () => {
-    // Check if your device supports Google Play
-    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-    // Get the users ID token
-    const { idToken } = await GoogleSignin.signIn();
+  // function onAuthStateChanged(user) {
+  //   setUser(user);
+  //   if (initializing) setInitializing(false);
+  // }
 
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-    // Sign-in the user with the credential
-    const user_sign_in = auth().signInWithCredential(googleCredential);
-    user_sign_in
-      .then((user) => {
-        console.log(user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  // Sign up function
+  const handleSignUp = () => {
+    navigation.navigate("Password", {
+      email: email,
+    });
   };
 
-  const handleGoogleSignout = async () => {
-    try {
-      await GoogleSignin.revokeAccess();
-      await auth().signOut();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const onGoogleButtonPress = async () => {
+  //   // Check if your device supports Google Play
+  //   await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+  //   // Get the users ID token
+  //   const { idToken } = await GoogleSignin.signIn();
 
-  const handleSignUp = () => {};
+  //   // Create a Google credential with the token
+  //   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
-  if (initializing) return null;
+  //   // Sign-in the user with the credential
+  //   const user_sign_in = auth().signInWithCredential(googleCredential);
+  //   user_sign_in
+  //     .then((user) => {
+  //       console.log(user);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+  // const handleGoogleSignout = async () => {
+  //   try {
+  //     await GoogleSignin.revokeAccess();
+  //     await auth().signOut();
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // if (initializing) return null;
 
   if (!user) {
     return (
       <View style={styles.container}>
         {/* Profile image container */}
         <View style={styles.container_1}>
-          <Image style={styles.profileImg}></Image>
+          <Image style={styles.profileImg} />
         </View>
         {/* Explanation */}
         <View style={styles.container_2}>
@@ -246,59 +254,33 @@ const SignUpPage = () => {
           </View>
         </View>
         {/* Authentification field */}
-        <View style={styles.container_4}>
-          <GoogleSigninButton
+        {/* <View style={styles.container_4}>
+          <TouchableOpacity
             style={styles.googleButton}
             onPress={onGoogleButtonPress}
-          />
-          <TouchableOpacity style={styles.googleButton}>
-            <Text style={styles.authButtonText} onPress={handleSignUp}>
-              Sign up with your Google
-            </Text>
+          >
+            <Text style={styles.authButtonText}>Sign up with your Google</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.facebookButton}>
-            <Text style={styles.authButtonText} onPress={handleSignUp}>
-              Sign up with your Facebook
-            </Text>
-          </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     );
-
-    // <KeyboardAvoidingView style={styles.container} behavior="padding">
-    //   <View style={styles.inputContainer}>
-    //     <TextInput
-    //       placeholder="Email"
-    //       value={email}
-    //       onChangeText={(text) => setEmail(text)}
-    //       style={styles.input}
-    //     />
-    //     <TextInput
-    //       placeholder="Password"
-    //       value={password}
-    //       onChangeText={(text) => setPassword(text)}
-    //       style={styles.input}
-    //       secureTextEntry
-    //     />
-    //   </View>
-    // </KeyboardAvoidingView>
   }
   // if google login is successful, return account name
-  return (
-    <View style={styles.container}>
-      <View style={{ marginTop: 100, alignItems: "center" }}>
-        <Text style={{ fontSize: 28, fontWeight: "bold" }}>
-          Welcome {user.displayName}
-        </Text>
-        <TouchableOpacity
-          style={styles.googleButton}
-          onPress={handleGoogleSignout}
-        >
-          <Text style={styles.authButtonText}>Google Sign out</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
+  // return (
+  //   <View style={styles.container}>
+  //     <View style={{ marginTop: 100, alignItems: "center" }}>
+  //       <Text style={{ fontSize: 28, fontWeight: "bold" }}>
+  //         Welcome {user.displayName}
+  //       </Text>
+  //       <TouchableOpacity
+  //         style={styles.googleButton}
+  //         onPress={handleGoogleSignout}
+  //       >
+  //         <Text style={styles.authButtonText}>Google Sign out</Text>
+  //       </TouchableOpacity>
+  //     </View>
+  //   </View>
+  // );
 };
 
 export default SignUpPage;

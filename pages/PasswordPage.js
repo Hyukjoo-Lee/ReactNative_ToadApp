@@ -1,4 +1,8 @@
-import { useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { useEffect, useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { firebaseAuth } from "../components/config";
+
 import {
   View,
   KeyboardAvoidingView,
@@ -95,9 +99,34 @@ const styles = StyleSheet.create({
 
 const PasswordPage = () => {
   const [password, setPassword] = useState("");
+  const route = useRoute();
+  const email = route.params.email;
 
+  const navigation = useNavigation();
+
+  // if there is user, go to Home screen
+  useEffect(() => {
+    const unsubscribe = firebaseAuth.onAuthStateChanged((user) => {
+      if (user) {
+        navigation.navigate("Home");
+      }
+    });
+
+    return unsubscribe;
+  }, []);
+
+  // Sign up function
   const handleSignUp = () => {
-    console.warn("jump to password");
+    createUserWithEmailAndPassword(firebaseAuth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("Signed up with", user.email);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("ERROR CODE:" + errorCode + "..." + errorMessage);
+      });
   };
 
   return (
@@ -109,15 +138,17 @@ const PasswordPage = () => {
 
       {/* Password field container */}
       <View style={styles.container_2}>
-        <Text style={styles.title}>Set your password</Text>
+        <Text style={styles.title}>Set your password </Text>
 
         <Text style={styles.passwordText}>Password</Text>
 
         <KeyboardAvoidingView style={styles.inputContainer}>
           <TextInput
             placeholder="At least 8 charaters "
+            value={password}
             onChangeText={(text) => setPassword(text)}
             style={styles.input}
+            secureTextEntry
           />
         </KeyboardAvoidingView>
       </View>

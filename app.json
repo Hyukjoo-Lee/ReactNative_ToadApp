@@ -3,8 +3,8 @@
     "name": "toad",
     "slug": "toad",
     "version": "1.0.0",
-    "plugins": [["@react-native-google-signin/google-signin"]
-    ,[
+    "plugins": [["@react-native-google-signin/google-signin"],
+    [
       "react-native-fbsdk-next",
       {
         "appID": "670908454661037",
@@ -26,17 +26,23 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "ios": {
+      "bundleIdentifier": "com.jaycoding.toad",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.138508252713-qjt9ee8569vnhm6igh3ppitlmpfd1uor"
+        }
+      },
+      "googleServicesFile": "./GoogleService-Info.plist"
+    },
     "android": {
+      "package": "com.jaycoding.toad",
       "googleServicesFile": "./google-services.json",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.jaycoding.toad"
-    },
-    "ios": {
-      "supportsTablet": true
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

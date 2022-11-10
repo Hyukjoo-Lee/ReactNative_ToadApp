@@ -9,12 +9,6 @@ import {
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { auth } from "../components/config";
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -81,20 +75,6 @@ const LoginPage = () => {
 
     return unsubscribe;
   }, []);
-
-  // Sign up function
-  const handleSignUp = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("Signed up with", user.email);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("ERROR CODE:" + errorCode + "..." + errorMessage);
-      });
-  };
 
   // Log in function
   const handleLogin = () => {
