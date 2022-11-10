@@ -1,13 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import PasswordPage from "./pages/PasswordPage";
-import SignUpPage from "./pages/SignupPage";
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import MainPage from "./pages/MainPage";
-import "expo-dev-client";
-
-import SplashPage from "./pages/SplashPage";
+// import PasswordPage from "./pages/PasswordPage";
+// import SignUpPage from "./pages/SignupPage";
+// import HomePage from "./pages/HomePage";
+// import LoginPage from "./pages/LoginPage";
+// import MainPage from "./pages/MainPage";
+// import SplashPage from "./pages/SplashPage";
+// import "expo-dev-client";
 
 // 20221108 Add Tabs by Jessi
 import Tabs from "./Navigation/Tabs";
