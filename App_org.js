@@ -9,19 +9,12 @@ import "expo-dev-client";
 import SplashPage from "./pages/SplashPage";
 import HomePage from "./pages/HomePage";
 
-
-// 20221108 Add Tabs by Jessi
-import Tabs from "./Navigation/Tabs";
-
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tabs />
-      
-      {/* <Stack.Navigator>
+      <Stack.Navigator>
         <Stack.Screen name="Splash" component={SplashPage} />
         <Stack.Screen name="SignUp" component={SignUpPage} />
         <Stack.Screen
@@ -31,8 +24,7 @@ export default function App() {
         />
         <Stack.Screen name="Password" component={PasswordPage} />
         <Stack.Screen name="Home" component={HomePage} />
-      </Stack.Navigator> */}
-
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
