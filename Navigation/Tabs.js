@@ -86,7 +86,7 @@ const Tabs = () => {
                             source={require('../assets/Icons/Icon_Home.png')}
                             resizeMode = 'contain'
                             style={{
-                                width: 25,
+                                width: 24,
                                 height: 25,
                                 tintColor: focused ? '#613EEA' : '#000000'
                             }}
