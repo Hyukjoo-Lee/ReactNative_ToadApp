@@ -16,7 +16,6 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      {/* <Tabs /> */}
       <Stack.Navigator>
         <Stack.Screen name="Splash" component={SplashPage} />        
         <Stack.Screen name="SignUp" component={SignUpPage} />
