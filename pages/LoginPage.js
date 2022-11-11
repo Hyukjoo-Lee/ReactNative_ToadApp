@@ -119,7 +119,8 @@ const LoginPage = () => {
 
   // Sign In function
   const handleSignUp = () => {
-    navigation.navigate("Home");
+    // navigation.navigate("Home");
+    navigation.navigate("Tabs");
   };
 
   return (

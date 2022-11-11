@@ -17,11 +17,13 @@ import {
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //Screen
+import MainPage from "../pages/MainPage";
 import HomePage from '../pages/HomePage';
 import CategoryPage from '../pages/CategoryPage';
 import SellPage from '../pages/SellPage';
 import ChatPage from '../pages/ChatPage';
 import SplashPage from '../pages/SplashPage';
+
 import { TouchableOpacityBase } from 'react-native';
 import { clickProps } from 'react-native-web/dist/cjs/modules/forwardedProps';
 
@@ -79,7 +81,7 @@ const Tabs = () => {
             }}
         
         >
-            <Tab.Screen name = "Home" component={HomePage} options={{
+            <Tab.Screen name = "Main" component={MainPage} options={{
                 tabBarIcon: ({focused}) => (
                     <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
                         <Image
