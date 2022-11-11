@@ -102,7 +102,8 @@ const Tabs = () => {
 
             <Tab.Screen name = "Category" component={CategoryPage} options={{
                 tabBarIcon: ({focused}) => (
-                    <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
+                    <View style={{
+                        alignItems: 'center',justifyContent: 'center', top: 10, left: -15}}>
                         <Image
                             source={require('../assets/Icons/Icon_Category.png')}
                             resizeMode = 'contain'
@@ -179,7 +180,7 @@ const Tabs = () => {
 
             <Tab.Screen name = "Chat" component={ChatPage}  options={{
                 tabBarIcon: ({focused}) => (
-                    <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
+                    <View style={{alignItems: 'center', justifyContent: 'center', top: 10, right: -15}}>
                         <Image
                             source={require('../assets/Icons/Icon_Chat.png')}
                             resizeMode = 'contain'
