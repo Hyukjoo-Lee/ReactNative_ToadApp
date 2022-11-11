@@ -14,7 +14,7 @@ import {
     TouchableOpacity
   } from "react-native";
   
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { BottomTabBar, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //Screen
 import MainPage from "../pages/MainPage";
@@ -26,8 +26,11 @@ import SplashPage from '../pages/SplashPage';
 
 import { TouchableOpacityBase } from 'react-native';
 import { clickProps } from 'react-native-web/dist/cjs/modules/forwardedProps';
+import { ImageBackground } from 'react-native-web';
 
 const Tab = createBottomTabNavigator();
+
+// const TabBarComponent = (props) => (<BottomTabBar {...props} />);
 
 //Customize Sell button
 const CustomTabBarButton = ({children, onPress}) => (
@@ -62,6 +65,7 @@ const Tabs = () => {
     return(
         <Tab.Navigator
             //initialRouteName='ExerciseScreensStack'
+            //initialRouteName='HomeScreen'
             screenOptions={{
                 tabBarShowLabel: false,
                 tabBarStyle: {
@@ -73,12 +77,38 @@ const Tabs = () => {
                     backgroundColor: '#D9D9D9',
                     borderRadius: 8,
                     height: 78
-        
-                    //Shadow
+
+                    //Shadow effect
                     // ,
                     // ...styles.Shadow
-                }
+                },
+
+                // TabBarComponent: props => {
+                //     return (
+                //         <View style={{
+                //             position: 'absolute',
+                //             left: 0,
+                //             right: 0,
+                //             bottom: 0,
+                //         }}>
+                //             <TabBarComponent {...props} />
+                //         </View>
+                //     )
+
+                // },
+
+                // tabBarBackground: () => {
+                //     <View>
+                //         <Image source={require('../assets/Icons/Icon_TabBackground.png')} />
+                //     </View>
+                // },
+
+                // tabBarBackground: {
+                //     ImageBackground: require('../assets/Icons/Icon_TabBackground.png')
+                // },
+
             }}
+            
         
         >
             <Tab.Screen name = "Main" component={MainPage} options={{
@@ -90,6 +120,7 @@ const Tabs = () => {
                             style={{
                                 width: 24,
                                 height: 25,
+                                top:    -10,
                                 tintColor: focused ? '#613EEA' : '#000000'
                             }}
                             />
@@ -110,6 +141,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
+                                top:    -10,
                                 tintColor: focused ? '#613EEA' : '#000000'
                             }}
                             />
@@ -187,6 +219,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
+                                top:    -10,
                                 tintColor: focused ? '#613EEA' : '#000000'
                             }}
                             />
@@ -206,6 +239,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
+                                top:    -10,
                                 tintColor: focused ? '#613EEA' : '#000000'
                             }}
                             />
