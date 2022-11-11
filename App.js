@@ -18,8 +18,7 @@ export default function App() {
     <NavigationContainer>
       {/* <Tabs /> */}
       <Stack.Navigator>
-        <Stack.Screen name="Splash" component={SplashPage} />
-        <Stack.Screen name="Main" component={MainPage} />
+        <Stack.Screen name="Splash" component={SplashPage} />        
         <Stack.Screen name="SignUp" component={SignUpPage} />
         <Stack.Screen
           options={{ headerShown: false }}
@@ -27,7 +26,9 @@ export default function App() {
           component={LoginPage}
         />
         <Stack.Screen name="Password" component={PasswordPage} />
-        <Stack.Screen name="Home" component={HomePage} />
+        {/* <Stack.Screen name="Home" component={HomePage} /> */}
+        <Stack.Screen name="Main" component={MainPage} />
+        <Stack.Screen name="Tabs" component={Tabs} />
       </Stack.Navigator>
     </NavigationContainer>
   );

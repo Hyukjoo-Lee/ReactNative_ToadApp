@@ -2,7 +2,6 @@
 import { StyleSheet, Text, TextInput, Image, TouchableOpacity, View, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import Tabs from "../Navigation/Tabs";
 
 const itemdata = [
     {name: 'HOMCOM FAN', area: 'Downtown', date: '1d', price: '$50'},
@@ -47,7 +46,6 @@ const MainPage = () => {
   
 
     return(
-
         <View style={styles.container}>
             <Text style={styles.titleText}>{area}</Text>
             <TextInput style={styles.inputText}
