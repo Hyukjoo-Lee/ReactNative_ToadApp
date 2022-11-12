@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, TextInput, Image, TouchableOpacity, View, ScrollView } from "react-native";
+import { StyleSheet, Text, TextInput, Image, TouchableOpacity, View, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Tabs from "../Navigation/Tabs";
@@ -7,12 +7,14 @@ import Tabs from "../Navigation/Tabs";
 const itemdata = [
     {name: 'HOMCOM FAN', area: 'Downtown', date: '1d', price: '$50'},
     {name: 'Ikea black out curtain', area: 'Downtown', date: '2d', price: '$150'},
-    {name: 'Bell Motorcycle helmet', area: 'Downtown', date: '4d', price: '$55'},
+    {name: 'Bell Motorcycle helmet for kids', area: 'Downtown', date: '4d', price: '$55'},
     {name: 'Bag', area: 'Downtown', date: '4d', price: '$20'},
     {name: 'Oriental cup', area: 'Downtown', date: '4d', price: '$190'},
     {name: 'Jumper', area: 'Downtown', date: '20d', price: '$59'},
     {name: 'snikers', area: 'Downtown', date: '3d', price: '$210'},
-    {name: 'ivory curtain', area: 'Downtown', date: '5d', price: '$70'}
+    {name: 'ivory curtain', area: 'Downtown', date: '5d', price: '$70'},
+    {name: 'Sweater', area: 'Downtown', date: '5d', price: '$20'},
+    {name: 'Jeans', area: 'Downtown', date: '2d', price: '$30'}
 ];
 
 const filterdata = [
@@ -58,13 +60,14 @@ const MainPage = () => {
             <View>
 
             </View>
-            <ScrollView  style={styles.scrollContainer}>
-                {items.map((item, index) => {
-                    return(
-                        <ShowItem key={index} itemInfo={item}/>
-                    );
-                })}
-            </ScrollView>
+            <FlatList style={styles.gridContainer}
+                numColumns={2}
+                data={items}
+                keyExtractor={(item,index) => index.toString()}
+                renderItem={({item}) => (
+                    <ShowItem itemInfo={item} />
+                )}
+            />
             {/*}
             <View  style={styles.itemContainer}>
                 {items.map((item, index) => {
@@ -84,21 +87,23 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "white",
     },
-    scrollContainer:{
-        flex:1, 
-
-        margin: 10,
+    gridContainer:{
+        marginTop: 10,
     },
-    itemContainer:{
-        flex:1, 
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        margin: 10,
-    },
+    // itemContainer:{
+    //     flex:1, 
+    //     flexDirection: 'row',
+    //     flexWrap: 'wrap',
+    //     justifyContent: 'space-around',
+    //     margin: 10,
+    // },
     card: {
-        width: "50%",
-        padding: 5,
+        width: '48%',
+        //alignItems: 'center',
+        margin: '1%',
+        //borderWidth : 0.5,
+        //marginLeft: '2%',
+        padding: 10
     },
     titleText: {
         marginBottom: "1%",
@@ -120,6 +125,7 @@ const styles = StyleSheet.create({
     price: {
         marginBottom: "1%",
         fontSize: 24,
+        fontWeight: 'bold',
     },
     inputText: {
         width: "70%",
@@ -132,7 +138,7 @@ const styles = StyleSheet.create({
 
     itemImage:{
         width: "100%",
-        height: 180,
+        height: 240,
         backgroundColor:"#ddd",
     },
 
