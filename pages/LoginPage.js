@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { firebaseAuth } from "../components/config";
 import Checkbox from "expo-checkbox";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const styles = StyleSheet.create({
   container: {
@@ -113,14 +114,34 @@ const styles = StyleSheet.create({
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState();
-
+  const [user, setUser] = useState("");
   const navigation = useNavigation();
 
+  useEffect(() => {
+    const unsubscribe = firebaseAuth.onAuthStateChanged((user) => {
+      if (user) {
+        navigation.navigate("Main");
+      } else {
+        console.log("user is not set");
+      }
+    });
+
+    return unsubscribe;
+  }, [user]);
+
   // Sign In function
-  const handleSignUp = () => {
-    // navigation.navigate("Home");
-    navigation.navigate("Tabs");
+  const handleSignIn = () => {
+    signInWithEmailAndPassword(firebaseAuth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setUser(user);
+        console.log("Signed up with", user.email);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("ERROR CODE:" + errorCode + "..." + errorMessage);
+      });
   };
 
   return (
@@ -153,7 +174,7 @@ const LoginPage = () => {
           <Checkbox />
           <Text>Remember me</Text>
         </View>
-        <TouchableOpacity style={styles.loginButton} onPress={handleSignUp}>
+        <TouchableOpacity style={styles.loginButton} onPress={handleSignIn}>
           <Text style={styles.loginButtonText}>Log in</Text>
         </TouchableOpacity>
         {/* A horizontal line with OR text*/}
