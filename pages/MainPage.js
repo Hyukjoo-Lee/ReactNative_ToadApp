@@ -3,13 +3,14 @@ import {
   Text,
   TextInput,
   Image,
-  TouchableOpacity,
   View,
   FlatList,
+  StatusBar,
+  SafeAreaView,
+  ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import Tabs from "../Navigation/Tabs";
 
 const itemdata = [
   { name: "HOMCOM FAN", area: "Downtown", date: "1d", price: "$50" },
@@ -65,23 +66,24 @@ const MainPage = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.titleText}>{area}</Text>
-      <TextInput
-        style={styles.inputText}
-        placeholder="Search for anything"
-        value={""}
-        onChangeText={""}
-      />
-      <View></View>
-      <FlatList
-        style={styles.gridContainer}
-        numColumns={2}
-        data={items}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <ShowItem itemInfo={item} />}
-      />
-      {/*}
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <Text style={styles.titleText}>{area}</Text>
+        <TextInput
+          style={styles.inputText}
+          placeholder="Search for anything"
+          value={""}
+          onChangeText={""}
+        />
+        <View></View>
+        <FlatList
+          style={styles.gridContainer}
+          numColumns={2}
+          data={items}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <ShowItem itemInfo={item} />}
+        />
+        {/*}
             <View  style={styles.itemContainer}>
                 {items.map((item, index) => {
                     return(
@@ -90,13 +92,15 @@ const MainPage = () => {
                 })}
             </View>
             */}
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: StatusBar.currentHeight,
     backgroundColor: "white",
   },
   gridContainer: {
