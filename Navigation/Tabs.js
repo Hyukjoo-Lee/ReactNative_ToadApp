@@ -4,32 +4,16 @@
 npm install @react-navigation/bottom-tabs
 */
 
-import react from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
-import {
-  BottomTabBar,
-  createBottomTabNavigator,
-} from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 //Screen
 import MainPage from "../pages/MainPage";
-import HomePage from "../pages/HomePage";
 import CategoryPage from "../pages/CategoryPage";
 import SellPage from "../pages/SellPage";
 import ChatPage from "../pages/ChatPage";
 import SplashPage from "../pages/SplashPage";
-
-import { TouchableOpacityBase } from "react-native";
-import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
-import { ImageBackground } from "react-native-web";
 
 const Tab = createBottomTabNavigator();
 

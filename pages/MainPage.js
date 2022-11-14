@@ -67,23 +67,22 @@ const MainPage = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <Text style={styles.titleText}>{area}</Text>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Search for anything"
-          value={""}
-          onChangeText={""}
-        />
-        <View></View>
-        <FlatList
-          style={styles.gridContainer}
-          numColumns={2}
-          data={items}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <ShowItem itemInfo={item} />}
-        />
-        {/*}
+      <Text style={styles.titleText}>{area}</Text>
+      <TextInput
+        style={styles.inputText}
+        placeholder="Search for anything"
+        value={""}
+        onChangeText={""}
+      />
+      <View></View>
+      <FlatList
+        style={styles.gridContainer}
+        numColumns={2}
+        data={items}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => <ShowItem itemInfo={item} />}
+      />
+      {/*}
             <View  style={styles.itemContainer}>
                 {items.map((item, index) => {
                     return(
@@ -92,7 +91,6 @@ const MainPage = () => {
                 })}
             </View>
             */}
-      </ScrollView>
     </SafeAreaView>
   );
 };
