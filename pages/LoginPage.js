@@ -120,7 +120,7 @@ const LoginPage = () => {
   useEffect(() => {
     const unsubscribe = firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
-        navigation.navigate("Main");
+        navigation.navigate("Tabs");
       } else {
         console.log("user is not set");
       }
