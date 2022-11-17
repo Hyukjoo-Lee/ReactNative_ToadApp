@@ -10,6 +10,9 @@ npm-debug.*
 *.orig.*
 web-build/
 pages/TestPage.js
-
+components/config.jsx
+google-services.json
+GoogleService-Info.plist
+app.json
 # macOS
 .DS_Store
