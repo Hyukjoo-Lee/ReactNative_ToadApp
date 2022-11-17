@@ -7,7 +7,6 @@ import {
   FlatList,
   StatusBar,
   SafeAreaView,
-  ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";

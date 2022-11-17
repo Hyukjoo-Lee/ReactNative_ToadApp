@@ -4,8 +4,14 @@
 npm install @react-navigation/bottom-tabs
 */
 
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 //Screen
@@ -14,6 +20,36 @@ import CategoryPage from "../pages/CategoryPage";
 import SellPage from "../pages/SellPage";
 import ChatPage from "../pages/ChatPage";
 import SplashPage from "../pages/SplashPage";
+
+// SVGs
+import HomeImage from "../assets/Icons/Icon_Home.svg";
+import CategoryImage from "../assets/Icons/Icon_Category.svg";
+import ChatImage from "../assets/Icons/Icon_Chat.svg";
+import AccountImage from "../assets/Icons/Icon_Account.svg";
+
+// To render Svg Icon Files
+const RenderHomeSVG = (props) => {
+  return <HomeImage style={{ stroke: props.color, marginTop: 6.5 }} />;
+};
+
+const RenderCategorySVG = (props) => {
+  return <CategoryImage style={{ stroke: props.color, marginTop: 6.5 }} />;
+};
+
+const RenderChatSVG = (props) => {
+  return <ChatImage style={{ stroke: props.color, marginTop: 6.5 }} />;
+};
+
+const RenderAccountSVG = (props) => {
+  return <AccountImage style={{ stroke: props.color, marginTop: 6.5 }} />;
+};
+
+// const RenderHomeSVG = (props) => {
+//   return <HomeImage style={{ stroke: props.color, marginTop: 6.5 }} />;
+// };
+// const RenderHomeSVG = (props) => {
+//   return <HomeImage style={{ stroke: props.color, marginTop: 6.5 }} />;
+// };
 
 const Tab = createBottomTabNavigator();
 
@@ -113,20 +149,20 @@ const Tabs = () => {
                 top: 10,
               }}
             >
-              <Image
-                source={require("../assets/Icons/Icon_Home.png")}
+              <ImageBackground
                 resizeMode="contain"
                 style={{
-                  width: 24,
+                  width: 25,
                   height: 25,
-                  top: -10,
-                  tintColor: focused ? "#613EEA" : "#000000",
+                  top: -7,
                 }}
-              />
+              >
+                <RenderHomeSVG color={focused ? "#613EEA" : "#000000"} />
+              </ImageBackground>
               <Text
                 style={{ color: focused ? "#613EEA" : "#000000", fontSize: 12 }}
               >
-                HOME
+                Home
               </Text>
             </View>
           ),
@@ -146,16 +182,16 @@ const Tabs = () => {
                 left: -15,
               }}
             >
-              <Image
-                source={require("../assets/Icons/Icon_Category.png")}
+              <ImageBackground
                 resizeMode="contain"
                 style={{
                   width: 25,
                   height: 25,
                   top: -10,
-                  tintColor: focused ? "#613EEA" : "#000000",
                 }}
-              />
+              >
+                <RenderCategorySVG color={focused ? "#613EEA" : "#000000"} />
+              </ImageBackground>
               <Text
                 style={{ color: focused ? "#613EEA" : "#000000", fontSize: 12 }}
               >
@@ -240,16 +276,16 @@ const Tabs = () => {
                 right: -15,
               }}
             >
-              <Image
-                source={require("../assets/Icons/Icon_Chat.png")}
+              <ImageBackground
                 resizeMode="contain"
                 style={{
                   width: 25,
                   height: 25,
                   top: -10,
-                  tintColor: focused ? "#613EEA" : "#000000",
                 }}
-              />
+              >
+                <RenderChatSVG color={focused ? "#613EEA" : "#000000"} />
+              </ImageBackground>
               <Text
                 style={{ color: focused ? "#613EEA" : "#000000", fontSize: 12 }}
               >
@@ -272,16 +308,17 @@ const Tabs = () => {
                 top: 10,
               }}
             >
-              <Image
-                source={require("../assets/Icons/Icon_Account.png")}
+              <ImageBackground
                 resizeMode="contain"
                 style={{
                   width: 25,
                   height: 25,
                   top: -10,
-                  tintColor: focused ? "#613EEA" : "#000000",
                 }}
-              />
+              >
+                <RenderAccountSVG color={focused ? "#613EEA" : "#000000"} />
+              </ImageBackground>
+
               <Text
                 style={{ color: focused ? "#613EEA" : "#000000", fontSize: 12 }}
               >

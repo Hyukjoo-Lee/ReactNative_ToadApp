@@ -60,12 +60,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const SplashPage = () => {
+export default function SplashPage() {
   const navigation = useNavigation();
 
   // Images in the image slider: should be replaced with others
   const images = [
-    require("../assets/splash.png"),
     "https://s3-alpha-sig.figma.com/img/fd28/4105/8db3722e6692831a4589945742169c60?Expires=1668988800&Signature=NiohfsssYH6a5NUT~LNsyY~ys--KnTVC-evLiNR7FDepIrCATlHpXxjuEutDWeYcB1gOYzNY7aEuI0XhwDJEWOwsgfcHvsxF5bdM7Kmg~DpH68YkeQs6FjjU~9HWrnZP8BhIORFqEgL81DIEK0QxkcbKzNwpHyYtd-Hjo1KeWIjTCmOqvyeErb48LaT~sYHuhAT2fmbdmAsfBCc-SIvVJMkxEYHA5PTXcPuuMrP8VcnG12w-ED~B5jFlznTYUEdTwOl6Q2wPsLC1OArOSFsEqCf6lS33hSfXQXh5CRmzkayLzwjnazylnPbIBAZUp6HWEhXPhHElMhV0Uz~MCq7y8A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
     "https://source.unsplash.com/1024x768/?nature",
     "https://source.unsplash.com/1024x768/?water",
@@ -124,6 +123,4 @@ const SplashPage = () => {
       </View>
     </View>
   );
-};
-
-export default SplashPage;
+}
