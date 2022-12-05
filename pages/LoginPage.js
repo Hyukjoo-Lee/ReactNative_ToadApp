@@ -167,7 +167,7 @@ const LoginPage = () => {
             value={password}
             onChangeText={(text) => setPassword(text)}
             style={styles.input}
-            secureTextEntry
+            // secureTextEntry
           />
         </KeyboardAvoidingView>
         <View style={styles.container_3}>

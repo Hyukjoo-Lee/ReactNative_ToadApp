@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { firebaseAuth } from "../components/config";
 
 import {
@@ -108,7 +108,7 @@ const PasswordPage = () => {
   useEffect(() => {
     const unsubscribe = firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
-        navigation.navigate("Home");
+        navigation.navigate("Main");
       }
     });
 
@@ -120,6 +120,11 @@ const PasswordPage = () => {
     createUserWithEmailAndPassword(firebaseAuth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        updateProfile(user, {
+          photoURL:
+            // default profile image
+            "https://gravatar.com/avatar/94d45dbdba988afacf30d916e7aaad69?s=200&d=mp&r=x",
+        });
         console.log("Signed up with", user.email);
       })
       .catch((error) => {

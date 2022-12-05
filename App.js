@@ -18,34 +18,39 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          options={{ headerShown: false }}
+          // options={{ headerShown: false }}
           name="Splash"
           component={SplashPage}
         />
         <Stack.Screen
-          options={{ headerShown: false }}
+          // options={{ headerShown: false }}
           name="SignUp"
           component={SignUpPage}
         />
         <Stack.Screen
-          options={{ headerShown: false }}
+          // options={{ headerShown: false }}
           name="Login"
           component={LoginPage}
         />
         <Stack.Screen
-          options={{ headerShown: false }}
+          // options={{ headerShown: false }}
           name="Password"
           component={PasswordPage}
         />
         <Stack.Screen
-          options={{ headerShown: false }}
+          // options={{ headerShown: false }}
           name="Main"
           component={MainPage}
         />
         <Stack.Screen
-          options={{ headerShown: false }}
+          // options={{ headerShown: false }}
           name="Tabs"
           component={Tabs}
+        />
+        <Stack.Screen
+          // options={{ headerShown: false }}
+          name="Home"
+          component={HomePage}
         />
       </Stack.Navigator>
     </NavigationContainer>
