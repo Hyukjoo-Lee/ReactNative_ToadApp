@@ -7,9 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import SplashPage from "./pages/SplashPage";
 import Tabs from "./Navigation/Tabs";
-// import "expo-dev-client";
-
-// 20221108 Add Tabs by Jessi
+import Chat from "./pages/ChatPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +15,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {/* <Stack.Screen
+          // options={{ headerShown: false }}
+          name="Chat"
+          component={Chat}
+        /> */}
         <Stack.Screen
           // options={{ headerShown: false }}
           name="Splash"
@@ -43,7 +46,7 @@ export default function App() {
           component={MainPage}
         />
         <Stack.Screen
-          // options={{ headerShown: false }}
+          options={{ headerShown: false }}
           name="Tabs"
           component={Tabs}
         />

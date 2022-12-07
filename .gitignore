@@ -14,5 +14,6 @@ components/config.jsx
 google-services.json
 GoogleService-Info.plist
 app.json
+.env
 # macOS
 .DS_Store

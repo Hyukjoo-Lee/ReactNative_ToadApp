@@ -1,11 +1,12 @@
-import React, {
-  useEffect,
-  useCallback,
-  useState,
-  useLayoutEffect,
-} from "react";
+import React, { useCallback, useState, useLayoutEffect } from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  orderBy,
+  query,
+  onSnapshot,
+} from "firebase/firestore";
 import { Avatar } from "@rneui/base";
 import { GiftedChat } from "react-native-gifted-chat";
 import { firebaseAuth, db } from "../components/config";
@@ -14,6 +15,7 @@ import AlarmImage from "../assets/Icons/Icon_Alarm.svg";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#fff",
     marginBottom: 105,
   },
 });
@@ -50,18 +52,21 @@ const Chat = ({ navigation }) => {
     });
   }, [navigation]);
 
-  useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: "Seller",
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: "Seller",
-        },
-      },
-    ]);
+  useLayoutEffect(() => {
+    const collectionRef = collection(db, "chats");
+    const q = query(collectionRef, orderBy("createdAt", "desc"));
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      setMessages(
+        querySnapshot.docs.map((doc) => ({
+          _id: doc.data()._id,
+          createdAt: doc.data().createdAt.toDate(),
+          text: doc.data().text,
+          user: doc.data().user,
+        }))
+      );
+    });
+    return unsubscribe;
   }, []);
 
   const onSend = useCallback((messages = []) => {
@@ -78,6 +83,13 @@ const Chat = ({ navigation }) => {
       <GiftedChat
         messages={messages}
         showAvatarForEveryMessage={true}
+        messagesContainerStyle={{
+          backgroundColor: "#fff",
+        }}
+        textInputStyle={{
+          backgroundColor: "#fff",
+          borderRadius: 20,
+        }}
         onSend={(messages) => onSend(messages)}
         user={{
           _id: firebaseAuth?.currentUser?.email,

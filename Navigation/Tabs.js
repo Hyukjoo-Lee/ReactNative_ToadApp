@@ -1,9 +1,3 @@
-// 20221108 Add Tabs by Jessi
-
-/*
-npm install @react-navigation/bottom-tabs
-*/
-
 import {
   StyleSheet,
   Text,
