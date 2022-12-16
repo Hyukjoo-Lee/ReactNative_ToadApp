@@ -1,3 +1,4 @@
+//hye kyung ko
 import {
   StyleSheet,
   Text,
@@ -66,13 +67,31 @@ const MainPage = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.titleText}>{area}</Text>
-      <TextInput
-        style={styles.inputText}
-        placeholder="Search for anything"
-        value={""}
-        onChangeText={""}
-      />
+    <Text style={styles.titleText}>{area}</Text>
+    <View style={styles.searchBar}>
+        <TextInput
+          style={styles.inputText}
+          placeholder="Search for anything"
+          value={""}
+          onChangeText={""}
+        />
+                <Image
+                    source={require('../assets/Icons/icon_filter.png')}
+                    //resizeMode = 'contain'
+                    style={{
+                        width: 60,
+                        height: 60,
+                    }}
+                />
+                <Image
+                    source={require('../assets/Icons/icon_notification.png')}
+                    //resizeMode = 'contain'
+                    style={{
+                        width: 60,
+                        height: 60,
+                    }}
+                />
+      </View>
       <View></View>
       <FlatList
         style={styles.gridContainer}
@@ -101,15 +120,16 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   gridContainer: {
-    marginTop: 10,
+    marginTop: 20,
   },
-  // itemContainer:{
-  //     flex:1,
-  //     flexDirection: 'row',
-  //     flexWrap: 'wrap',
-  //     justifyContent: 'space-around',
-  //     margin: 10,
-  // },
+  searchBar:{
+      flex:1,
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      // margin: 10,
+      marginBottom: 50,
+  },
   card: {
     width: "48%",
     //alignItems: 'center',
