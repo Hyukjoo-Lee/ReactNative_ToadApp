@@ -10,7 +10,7 @@ import {
 import { Avatar } from "@rneui/base";
 import { GiftedChat } from "react-native-gifted-chat";
 import { firebaseAuth, db } from "../components/config";
-import AlarmImage from "../assets/Icons/Icon_Alarm.svg";
+import AlarmImage from "../assets/Icons/icon_Alarm.svg";
 
 const styles = StyleSheet.create({
   container: {
