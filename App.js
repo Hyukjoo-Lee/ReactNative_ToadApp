@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import SplashPage from "./pages/SplashPage";
-import Tabs from "./Navigation/Tabs";
+import Tabs from "./navigation/Tabs";
 import Chat from "./pages/ChatPage";
 
 const Stack = createNativeStackNavigator();
