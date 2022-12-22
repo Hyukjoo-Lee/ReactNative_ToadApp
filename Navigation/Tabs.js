@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 //Screen
-import MainPage from "../pages/MainPage";
+
 import CategoryPage from "../pages/CategoryPage";
 import SellPage from "../pages/SellPage";
 import ChatPage from "../pages/ChatPage";
@@ -15,8 +15,12 @@ import AccountImage from "../assets/Icons/icon_account_box.svg";
 import SellImage from "../assets/Icons/icon_Sell.svg";
 import AccountPage from "../pages/AccountPage";
 import { theme } from "../src/theme";
+import CustomText from "../components/CustomText";
+import SplashPage from "../pages/SplashPage";
+import MainPage from "../pages/MainPage";
 
 // To render Svg Icon Files
+
 const RenderHomeSVG = (props) => {
   return (
     <HomeImage
@@ -152,14 +156,13 @@ const Tabs = () => {
                   color={focused ? theme.primary[700] : theme.neutral[400]}
                 />
               </ImageBackground>
-              <Text
+              <CustomText
                 style={{
                   color: focused ? theme.primary[700] : theme.neutral[400],
-                  fontSize: 15,
                 }}
               >
                 Home
-              </Text>
+              </CustomText>
             </View>
           ),
         }}
@@ -189,14 +192,13 @@ const Tabs = () => {
                   color={focused ? theme.primary[700] : theme.neutral[400]}
                 />
               </ImageBackground>
-              <Text
+              <CustomText
                 style={{
                   color: focused ? theme.primary[700] : theme.neutral[400],
-                  fontSize: 15,
                 }}
               >
                 Category
-              </Text>
+              </CustomText>
             </View>
           ),
         }}
@@ -226,14 +228,13 @@ const Tabs = () => {
                   color={focused ? theme.primary[700] : theme.neutral[400]}
                 />
               </ImageBackground>
-              <Text
+              <CustomText
                 style={{
                   color: focused ? theme.primary[700] : theme.neutral[400],
-                  fontSize: 15,
                 }}
               >
                 Sell
-              </Text>
+              </CustomText>
             </View>
           ),
         }}
@@ -263,14 +264,13 @@ const Tabs = () => {
                   color={focused ? theme.primary[700] : theme.neutral[400]}
                 />
               </ImageBackground>
-              <Text
+              <CustomText
                 style={{
                   color: focused ? theme.primary[700] : theme.neutral[400],
-                  fontSize: 15,
                 }}
               >
                 Chat
-              </Text>
+              </CustomText>
             </View>
           ),
         }}
@@ -301,14 +301,13 @@ const Tabs = () => {
                 />
               </ImageBackground>
 
-              <Text
+              <CustomText
                 style={{
                   color: focused ? theme.primary[700] : theme.neutral[400],
-                  fontSize: 15,
                 }}
               >
                 Account
-              </Text>
+              </CustomText>
             </View>
           ),
         }}
@@ -317,18 +316,18 @@ const Tabs = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  Shadow: {
-    shadowColor: "#7F5DF0",
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
-  },
-  IconButton: {},
-});
+// const styles = StyleSheet.create({
+//   Shadow: {
+//     shadowColor: "#7F5DF0",
+//     shadowOffset: {
+//       width: 0,
+//       height: 10,
+//     },
+//     shadowOpacity: 0.25,
+//     shadowRadius: 3.5,
+//     elevation: 5,
+//   },
+//   IconButton: {},
+// });
 
 export default Tabs;
