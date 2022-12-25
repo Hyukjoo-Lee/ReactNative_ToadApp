@@ -8,11 +8,12 @@ import {
   FlatList,
   StatusBar,
   SafeAreaView,
+  TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigation } from "@react-navigation/native";
 import DropDownPicker from "react-native-dropdown-picker";
-
+import {SearchBar} from 'react-native-elements';
 
 const itemdata = [
   { name: "HOMCOM FAN", area: "Downtown", date: "1d", price: "$50" },
@@ -74,14 +75,26 @@ const MainPage = () => {
     { label: "36K", value: "36K" },
   ]);
 
+  const [search, setSearch] = useState('');
+
   const navigation = useNavigation();
 
   useEffect(() => {
     setArea("Downtown");
     setItems(itemdata);
+    setSearch('');
     // setDistances(distancedata);
   }, []);
 
+  const updateSearch = (search) => {
+    setSearch({search});
+  }
+
+  const onTextInputPress = () => {
+    setSearch("Click");
+    //alert("Hello...");
+    navigation.navigate("MainSearch");
+  }
   // const onGenderOpen = useCallback(() => {
   //   //
   // }, []);
@@ -104,13 +117,22 @@ const MainPage = () => {
           />
       </View>
     </View>
+    {/* <SearchBar
+      lightTheme
+        placeholder="Type Here..."
+        onChangeText = {updateSearch}
+        value={search}
+      /> */}
     <View style={styles.searchBar}>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Search for anything"
-          value={""}
-          onChangeText={""}
-        />
+        <TouchableOpacity onPress={onTextInputPress}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Search for anything"
+            // onTouchStart={onTextInputPress} //only work on IOS
+            value={search}
+            editable={false}
+          />
+        </TouchableOpacity>
                 <Image
                     source={require('../assets/Icons/icon_filter.png')}
                     //resizeMode = 'contain'
@@ -201,8 +223,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   inputText: {
-    width: "70%",
-    marginLeft: 10,
+    width: "100%",
+    //marginLeft: 10,
     fontSize: 24,
     color: "#979797",
     backgroundColor: "lightgrey",
