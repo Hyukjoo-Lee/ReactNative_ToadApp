@@ -10,8 +10,8 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import React, { useEffect, useState, useCallback } from "react";
-import { useNavigation } from "@react-navigation/native";
+import React, { useEffect, useState} from "react";
+import { useNavigation, useRoute  } from "@react-navigation/native";
 import DropDownPicker from "react-native-dropdown-picker";
 import {SearchBar} from 'react-native-elements';
 
@@ -64,6 +64,7 @@ const ShowItem = (props) => (
 );
 
 const MainPage = () => {
+  
   const [area, setArea] = useState("");
   const [items, setItems] = useState([]);
 
@@ -77,7 +78,11 @@ const MainPage = () => {
 
   const [search, setSearch] = useState('');
 
+  const route = useRoute();
+  const keyWord = route.params?.keyWord;
+
   const navigation = useNavigation();
+ 
 
   useEffect(() => {
     setArea("Downtown");
@@ -91,9 +96,12 @@ const MainPage = () => {
   }
 
   const onTextInputPress = () => {
-    setSearch("Click");
+    //setSearch("Click");
     //alert("Hello...");
-    navigation.navigate("MainSearch");
+    //navigation.navigate("MainSearch");
+    navigation.navigate("MainSearch", {
+      paramKey: "Param KEYWORD"
+    });
   }
   // const onGenderOpen = useCallback(() => {
   //   //
@@ -129,7 +137,8 @@ const MainPage = () => {
             style={styles.inputText}
             placeholder="Search for anything"
             // onTouchStart={onTextInputPress} //only work on IOS
-            value={search}
+            //value={route?.params?.paramKey}
+            value={keyWord}
             editable={false}
           />
         </TouchableOpacity>
@@ -223,12 +232,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   inputText: {
-    width: "100%",
+    width: "110%",
     //marginLeft: 10,
     fontSize: 24,
     color: "#979797",
-    backgroundColor: "lightgrey",
-    padding: 5,
+    backgroundColor: "white",
+    borderColor: "lightgray",
+    borderWidth: 2,
+    borderRadius: 10,
+    padding: 10,
   },
   itemImage: {
     width: "100%",

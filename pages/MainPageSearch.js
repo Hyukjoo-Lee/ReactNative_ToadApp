@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, TextInput, Image, TouchableOpacity, Dimennsions} from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import {SearchBar} from 'react-native-elements';
 
 const filterSearchData = [
@@ -19,7 +19,7 @@ const filterSearchData = [
 
 const KeyWordButton = (props) => (
     <View>
-        <TouchableOpacity onPress={props.onPress} activeOpacity={0.7}>
+        <TouchableOpacity onPress={()=> {props.onPress(props.keyword)}} activeOpacity={0.7}>
             <View style={styles.buttonCommonStyle}>
                 <Text style={styles.buttonTextStyle}>{props.keyword}</Text>
             </View>
@@ -31,18 +31,31 @@ const MainPageSearch = () => {
     const [keyWords, setKeyWords] = useState([]);
     const [search, setSearch] = useState('');
 
+    const route = useRoute();
+    const keyWord = route.params?.paramKey;
     const navigation = useNavigation();
 
     useEffect(() => {
         setKeyWords(filterSearchData);
       setSearch('');
     }, []);
-    const updateSearch = (search) => {
-        setSearch({search});
+    const updateSearch = (input) => {
+        setSearch(input);
     }
 
-    const onPress = () => {
-        alert("clicked");
+    const onSearchSubmit = () => {
+        //alert("Enter" + search);
+        navigation.navigate("Main", {
+            keyWord: search
+        });
+    }
+
+    const onPress = (input) => {
+        //alert("clicked" + input + "__");
+        //setSearch({search}); //it doesn't work
+        navigation.navigate("Main", {
+            keyWord: input
+        });
     }
 
     return (
@@ -50,9 +63,17 @@ const MainPageSearch = () => {
             <SearchBar
                 lightTheme
                     placeholder="Type Here..."
+                    round = {true}
                     onChangeText = {updateSearch}
+                    onSubmitEditing = {onSearchSubmit}
                     value={search}
             />
+            {/* <TextInput
+                style={styles.inputText}
+                placeholder="Search for anything"
+                
+                value={search}
+            /> */}
             <Text style={styles.titleText} >Popular Searches</Text>
             <View style={styles.keywordContainer}>
                 {keyWords.map((keyword)=>{
@@ -103,6 +124,17 @@ const styles = StyleSheet.create({
       buttonTextStyle: {
         fontSize: 16,
         textAlign: "center",
+      },
+      inputText: {
+        width: "95%",
+        margin: 10,
+        fontSize: 24,
+        color: "#979797",
+        backgroundColor: "white",
+        borderColor: "lightgray",
+        borderWidth: 2,
+        borderRadius: 10,
+        padding: 10,
       },
 });
 

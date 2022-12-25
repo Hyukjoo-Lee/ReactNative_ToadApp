@@ -108,7 +108,9 @@ const PasswordPage = () => {
   useEffect(() => {
     const unsubscribe = firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
-        navigation.navigate("Main");
+        navigation.navigate("Main", {
+          keyWord: ''
+        });
       }
     });
 
