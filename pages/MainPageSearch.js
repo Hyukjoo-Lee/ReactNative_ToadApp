@@ -52,10 +52,10 @@ const MainPageSearch = () => {
 
     const onPress = (input) => {
         //alert("clicked" + input + "__");
-        //setSearch({search}); //it doesn't work
-        navigation.navigate("Main", {
-            keyWord: input
-        });
+        setSearch(input); //it doesn't work
+        // navigation.navigate("Main", {
+        //     keyWord: input
+        // });
     }
 
     return (
