@@ -88,7 +88,7 @@ const MainPageSearch = () => {
                 {keyWords.map((keyword)=>{
                     return(
                     <KeyWordButton 
-                        key = {keyword._id}
+                        key = {keyword.id}
                         onPress = {onPress}
                         keyword = {keyword.text}
                     />);
