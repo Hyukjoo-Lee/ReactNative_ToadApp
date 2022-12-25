@@ -245,6 +245,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 240,
     backgroundColor: "#ddd",
+    borderRadius: 10,
   },
   dropdownGender: {
     marginHorizontal: 10,
