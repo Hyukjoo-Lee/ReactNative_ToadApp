@@ -8,18 +8,22 @@ import MainPage from "./pages/MainPage";
 import SplashPage from "./pages/SplashPage";
 import Tabs from "./navigation/Tabs";
 import Chat from "./pages/ChatPage";
+import { useFonts, Lexend_400Regular } from "@expo-google-fonts/lexend";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Lexend_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
-          // options={{ headerShown: false }}
-          name="Chat"
-          component={Chat}
-        /> */}
         <Stack.Screen
           // options={{ headerShown: false }}
           name="Splash"
@@ -27,13 +31,13 @@ export default function App() {
         />
         <Stack.Screen
           // options={{ headerShown: false }}
-          name="SignUp"
-          component={SignUpPage}
+          name="Login"
+          component={LoginPage}
         />
         <Stack.Screen
           // options={{ headerShown: false }}
-          name="Login"
-          component={LoginPage}
+          name="SignUp"
+          component={SignUpPage}
         />
         <Stack.Screen
           // options={{ headerShown: false }}

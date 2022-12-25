@@ -1,4 +1,3 @@
-//hye kyung ko
 import {
   StyleSheet,
   Text,
@@ -9,10 +8,9 @@ import {
   StatusBar,
   SafeAreaView,
 } from "react-native";
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigation } from "@react-navigation/native";
 import DropDownPicker from "react-native-dropdown-picker";
-
 
 const itemdata = [
   { name: "HOMCOM FAN", area: "Downtown", date: "1d", price: "$50" },
@@ -66,12 +64,12 @@ const MainPage = () => {
   const [area, setArea] = useState("");
   const [items, setItems] = useState([]);
 
-  const [distanceOpen, setDistanceOpen] = useState(false);
-  const [distanceValue, setDistanceValue] = useState(null);
-  const [distance, setDistance] = useState([
-    { label: "12K", value: "12K" },
-    { label: "24K", value: "24K" },
-    { label: "36K", value: "36K" },
+  const [genderOpen, setGenderOpen] = useState(false);
+  const [genderValue, setGenderValue] = useState(null);
+  const [gender, setGender] = useState([
+    { label: "Male", value: "male" },
+    { label: "Female", value: "female" },
+    { label: "Prefer Not to Say", value: "neutral" },
   ]);
 
   const navigation = useNavigation();
@@ -82,29 +80,26 @@ const MainPage = () => {
     // setDistances(distancedata);
   }, []);
 
-  // const onGenderOpen = useCallback(() => {
-  //   //
-  // }, []);
-
-  // const {control } = useForm();
+  // const [open, setOpen] = useState(false);
+  // const [value, setValue] = useState(null);
+  // const [items, setItems] = useState([
+  //   { label: "Apple", value: "apple" },
+  //   { label: "Banana", value: "banana" },
+  // ]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.titleView}>
-        <Text style={styles.titleText}>{area}</Text>
-        <View style={styles.distancePicker}>
-          <DropDownPicker
-              style={styles.dropdown}
-              open={distanceOpen}
-              value={distanceValue} //genderValue
-              items={distance}
-              setOpen={setDistanceOpen}
-              setValue={setDistanceValue}
-              setItems={setDistance}
-          />
-      </View>
-    </View>
-    <View style={styles.searchBar}>
+      <Text style={styles.titleText}>{area}</Text>
+      <DropDownPicker
+        // style={styles.dropdown}
+        open={genderOpen}
+        value={genderValue} //genderValue
+        items={gender}
+        setOpen={setGenderOpen}
+        setValue={setGenderValue}
+        setItems={setGender}
+      /> 
+      <View style={styles.searchBar}>
         <TextInput
           style={styles.inputText}
           placeholder="Search for anything"
@@ -136,8 +131,7 @@ const MainPage = () => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => <ShowItem itemInfo={item} />}
       />
-
-    </SafeAreaView>
+    </SafeAreaView> 
   );
 };
 
@@ -150,21 +144,6 @@ const styles = StyleSheet.create({
   gridContainer: {
     marginTop: 20,
   },
-  titleView:{
-    flex:1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    // justifyContent: 'space-around',
-    marginBottom: 80,
-  },
-  titleText: {
-    marginBottom: "1%",
-    opacity: 0.6,
-    fontWeight: "medium",
-    fontSize: 32,
-    paddingLeft: 10,
-    paddingRight: 10, 
-  },
   searchBar:{
       flex:1,
       flexDirection: 'row',
@@ -173,9 +152,6 @@ const styles = StyleSheet.create({
       // margin: 10,
       marginBottom: 50,
   },
-  distancePicker:{
-    width: 80,
-  },
   card: {
     width: "48%",
     //alignItems: 'center',
@@ -183,6 +159,12 @@ const styles = StyleSheet.create({
     //borderWidth : 0.5,
     //marginLeft: '2%',
     padding: 10,
+  },
+  titleText: {
+    marginBottom: "1%",
+    opacity: 0.6,
+    fontWeight: "medium",
+    fontSize: 32,
   },
   itemText: {
     marginBottom: "1%",

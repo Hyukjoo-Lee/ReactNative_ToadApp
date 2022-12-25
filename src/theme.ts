@@ -1,8 +1,9 @@
 export const theme = {
+    default_font: `Lexend_400Regular`,
     primary: {
         50: "#D7F8F4",
         300: "#A9EFE6",
-        500: "#3AD9C6",
+        500: "#3AD9C6", // main
         700: "#54BFB2",
         900: "#007574",
     },
