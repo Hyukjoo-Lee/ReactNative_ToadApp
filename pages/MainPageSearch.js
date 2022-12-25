@@ -45,14 +45,23 @@ const MainPageSearch = () => {
 
     const onSearchSubmit = () => {
         //alert("Enter" + search);
-        navigation.navigate("Main", {
-            keyWord: search
+        navigation.navigate("Tabs", {
+            screen: "Main",
+            params:{
+                keyWord: search,
+            },
         });
     }
 
     const onPress = (input) => {
         //alert("clicked" + input + "__");
-        setSearch(input); //it doesn't work
+        setSearch(input); 
+        navigation.navigate("Tabs", {
+            screen: "Main",
+            params:{
+                keyWord: input,
+            },
+        });
         // navigation.navigate("Main", {
         //     keyWord: input
         // });

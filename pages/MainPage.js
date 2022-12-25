@@ -83,7 +83,6 @@ const MainPage = () => {
 
   const navigation = useNavigation();
  
-
   useEffect(() => {
     setArea("Downtown");
     setItems(itemdata);
