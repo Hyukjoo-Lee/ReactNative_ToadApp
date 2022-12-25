@@ -1,4 +1,8 @@
-// 20221109 Add CategoryPage by Jessi
+// 20221224 Add CategoryPage by Jessi
+
+// create category table on DB and connect DB
+
+
 
 import { useState } from "react";
 import { 
@@ -9,6 +13,7 @@ import {
   Button
 } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   container: {
@@ -18,18 +23,14 @@ const styles = StyleSheet.create({
   container_1: {
     margin: 10,
     height: 50,
-    justifyContent: "center",
-
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 10,
+    width: "100%",
   },
   title: {
-    // margin: 20,
     fontWeight: "500",
     fontSize: 32,
-    textAlign: "center"
+    textAlign: "center",
+    
+    marginHorizontal: 90,   
   },
   titleUnderLine: {
     top: 5,
@@ -48,7 +49,14 @@ const styles = StyleSheet.create({
   contentContainer: {
     // flex: 1,
     width: "100%",
-    height: 80,
+    height: 70,
+    
+  },  
+  contentTitle: {
+    marginTop: 10,
+    marginLeft: 10,
+    fontSize: 20,
+    color: "#979797",
   },
 });
 
@@ -58,6 +66,11 @@ const styles = StyleSheet.create({
  */
 const CategoryPage = () => {
 
+  const navigation = useNavigation();
+
+  const handleCategory = () => {
+    navigation.navigate("sell");
+  };
 
   return (
     <View style={styles.container}>
@@ -66,32 +79,46 @@ const CategoryPage = () => {
         <View style={styles.container_1}>
           <View
             style={{
-              flexDirection: "row"
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             
             <Button
                 title="<"
                 onPress={{}}
-                // color="transparent"
               />
 
             <Text style={styles.title}> Choose category </Text>
 
           </View>
 
-
           <View style={styles.titleUnderLine}/>
         </View>
+
 
         {/* Category list */}
         <View style={styles.container_2}>
 
-          {/* Category page */}
+          {/* Clothing Content */}
           <View style={styles.contentContainer}>
-            <Text style={styles.contentTitle}>Category</Text>
+            <Text style={styles.contentTitle}>Clothing</Text>
+            <View style={styles.titleUnderLine}/>
           </View>
-          <View style={styles.titleUnderLine}/>
+          
+          {/* Shoes Content */}
+          <View style={styles.contentContainer}>
+            <Text style={styles.contentTitle}>Shoes</Text>
+            <View style={styles.titleUnderLine}/>
+          </View>
+
+          {/* Accessories Content */}
+          <View style={styles.contentContainer}>
+            <Text style={styles.contentTitle}>Accessories</Text>
+            <View style={styles.titleUnderLine}/>
+          </View>
 
 
         </View>

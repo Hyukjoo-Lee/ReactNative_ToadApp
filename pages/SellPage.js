@@ -31,20 +31,19 @@ const styles = StyleSheet.create({
   container_1: {
     margin: 10,
     height: 50,
-    justifyContent: "center",
-
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 10,
+    width: "100%",
   },
   title: {
-    // margin: 20,
     fontWeight: "500",
-    fontSize: 32,
-    textAlign: "center"
+    fontSize: 32, 
+    marginHorizontal: 140,   
+    // marginRight: 50,
+    // marginLeft: 50,
   },
-
+  topButton: {
+    margin: "100",
+    backgroundColor: "red"
+  },
   // Choose sell photo container -------------------
   container_2: {
     flex: 0.6,
@@ -80,23 +79,22 @@ const styles = StyleSheet.create({
   },  
   titleInput: {
     width: "100%",
-    boder: "none",
+    // borderWidth: 0.2,
+    // borderRadius: 7,
+    // backgroundColor: "green",
     backgroundColor: "transparent",
-    // backgroundColor: "white",
-    paddingHorizontal: 15,
-    borderWidth: 0.2,
+    paddingHorizontal: 15,    
     paddingVertical: 10,
-    borderRadius: 7,
+    
     marginTop: 5,
   },
   priceInput: {
     width: "40%",
-    boder: "none",
+    // borderWidth: 0.2,
+    // borderRadius: 7,
     backgroundColor: "transparent",
     paddingHorizontal: 15,
-    borderWidth: 0.2,
     paddingVertical: 10,
-    borderRadius: 7,
     marginTop: 5,
   },  
   titleUnderLine: {
@@ -109,19 +107,18 @@ const styles = StyleSheet.create({
   },
   description: {
     width: "100%",
-    boder: "none",
-    backgroundColor: "transparent",
+    // borderWidth: 0.2,
+    // borderRadius: 7,
     // backgroundColor: "white",
+    backgroundColor: "transparent",
     paddingHorizontal: 15,
-    borderWidth: 0.2,
     paddingVertical: 10,
-    borderRadius: 7,
     marginTop: 5,
   },
   bottomContentContainer: {
     // flex: 1,
     width: "100%",
-    height: 50,
+    height: 55,
   },
 
 
@@ -182,8 +179,16 @@ const styles = StyleSheet.create({
  * SellPage by Jessi
  */
 const SellPage = () => {
-
+  
+  const [user, setUser] = useState();
   const [title, setTitle] = useState("");
+
+  const navigation = useNavigation();
+  
+  const handleCategory = () => {
+    navigation.navigate("Category");
+  };
+  
   const [price, setPrice] = useState("");
 
   const [trade, setTrade] = useState(false);
@@ -205,14 +210,6 @@ const SellPage = () => {
 
   const [description, setDescription] = useState("");
 
-  const [user, setUser] = useState();
-  const navigation = useNavigation();
-
-  const handleSignUp = () => {
-    navigation.navigate("Password", {
-      email: email,
-    });
-  };
 
   if (!user) {
     return (
@@ -223,14 +220,18 @@ const SellPage = () => {
         <View style={styles.container_1}>
           <View
             style={{
-              flexDirection: "row"
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              
             }}
           >
             
             <Button
+                // style={ styles.topButton }
                 title="<"
                 onPress={{}}
-                // color="transparent"
               />
 
             <Text style={styles.title}> Post </Text>
@@ -275,7 +276,9 @@ const SellPage = () => {
 
           {/* Category page */}
           <View style={styles.contentContainer}>
-            <Text style={styles.contentTitle}>Category</Text>
+            <TouchableOpacity onPress={handleCategory}>
+              <Text style={styles.contentTitle}>Category</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.titleUnderLine}/>
 
@@ -321,7 +324,6 @@ const SellPage = () => {
                     title="Trade"                  
                     checked={trade}
                     onPress={()=>setTrade(!trade)}
-                    // backgroundColor="transparent"
                     checkedIcon="check-circle-o"
                     uncheckedIcon="check-circle-o"
                   />
@@ -330,8 +332,7 @@ const SellPage = () => {
                   <CheckBox
                     title="Negotiable"
                     checked={negotiable}
-                    onPress={()=>setNegotiable(!negotiable)}                    
-                    // backgroundColor="transparent"
+                    onPress={()=>setNegotiable(!negotiable)}
                     checkedIcon="check-circle-o"
                     uncheckedIcon="check-circle-o"                  
                   />
