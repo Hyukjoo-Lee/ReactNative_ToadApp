@@ -6,11 +6,34 @@ import {SearchBar} from 'react-native-elements';
 
 const ItemDetail = () => {
 
+    const route = useRoute();
+    const item = route.params?.item;
+    const navigation = useNavigation();
+
+    //alert(item.name);
+
     return (
-        <View>
-            <Text>ItemDetail</Text>
+        <View style={styles.container}>
+            <Image style={styles.itemImage} source={item.image} />
+            <View style={styles.infoView}></View>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "white",
+      },
+    itemImage: {
+        flex:1,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#ddd",
+      },
+    infoView:{
+        flex:1,
+    }
+});
 
 export default ItemDetail;

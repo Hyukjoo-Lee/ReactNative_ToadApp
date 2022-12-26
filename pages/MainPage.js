@@ -44,7 +44,7 @@ const distancedata = [
 
 const ShowItem = (props) => (
   <View style={styles.card}>
-    <TouchableOpacity onPress={props.onPress}>
+    <TouchableOpacity onPress={() => props.onPress(props.itemInfo)}>
     <Image style={styles.itemImage}                     
       source={props.itemInfo.image}
     />
@@ -97,9 +97,10 @@ const MainPage = () => {
     });
   }
 
-  const onItemPress = () => {
+  const onItemPress = (item) => {
+    
     navigation.navigate("ItemDetail", {
-      paramKey: "Param KEYWORD"
+      item: item
     });
   }
   // const onGenderOpen = useCallback(() => {
