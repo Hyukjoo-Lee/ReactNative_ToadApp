@@ -9,11 +9,18 @@ import MainPageSearch from "./pages/MainPageSearch";
 import ItemDetail from "./pages/ItemDetail";
 import SplashPage from "./pages/SplashPage";
 import Tabs from "./navigation/Tabs";
-import Chat from "./pages/ChatPage";
+import { useFonts, Lexend_400Regular } from "@expo-google-fonts/lexend";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Lexend_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <NavigationContainer>
       <Stack.Navigator>
