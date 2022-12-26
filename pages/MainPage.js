@@ -8,33 +8,24 @@ import {
   FlatList,
   StatusBar,
   SafeAreaView,
+  TouchableOpacity,
 } from "react-native";
-import React, { useEffect, useState, useCallback } from "react";
-import { useNavigation } from "@react-navigation/native";
+import React, { useEffect, useState} from "react";
+import { useNavigation, useRoute  } from "@react-navigation/native";
 import DropDownPicker from "react-native-dropdown-picker";
-
+import {SearchBar} from 'react-native-elements';
 
 const itemdata = [
-  { name: "HOMCOM FAN", area: "Downtown", date: "1d", price: "$50" },
-  {
-    name: "Ikea black out curtain",
-    area: "Downtown",
-    date: "2d",
-    price: "$150",
-  },
-  {
-    name: "Bell Motorcycle helmet for kids",
-    area: "Downtown",
-    date: "4d",
-    price: "$55",
-  },
-  { name: "Bag", area: "Downtown", date: "4d", price: "$20" },
-  { name: "Oriental cup", area: "Downtown", date: "4d", price: "$190" },
-  { name: "Jumper", area: "Downtown", date: "20d", price: "$59" },
-  { name: "snikers", area: "Downtown", date: "3d", price: "$210" },
-  { name: "ivory curtain", area: "Downtown", date: "5d", price: "$70" },
-  { name: "Sweater", area: "Downtown", date: "5d", price: "$20" },
-  { name: "Jeans", area: "Downtown", date: "2d", price: "$30" },
+  { name: "Baby mobile on Sale!", area: "Downtown", date: "4d", price: "$17", image: require("../assets/items/itemMobile1.png")},
+  { name: "Good stroller", area: "North Vancouver", date: "5d", price: "$6", image: require("../assets/items/itemStroller1.png")},
+  { name: "Baby toy! almost new!",area: "Downtown", date: "1d",price: "$17", image: require("../assets/items/itemToy2.png")},
+  { name: "Good condition toy", area: "Downtown", date: "4d", price: "$6", image: require("../assets/items/itemToy1.png")},
+  { name: "Baby swimsuit&gears", area: "West end", date: "1d", price: "$17", image: require("../assets/items/itemSwim1.png") },
+  { name: "Never used toy", area: "Downtown", date: "5d", price: "$6", image: require("../assets/items/itemToy3.png") },
+  { name: "Swedish Stroller", area: "Vancouver", date: "3d", price: "$210", image: require("../assets/items/itemStroller4.png") },
+  { name: "Vintage Stroller", area: "Downtown", date: "5d", price: "$70", image: require("../assets/items/itemStroller3.png")},
+  { name: "Norwegian Stroller", area: "Burnaby", date: "2d", price: "$55", image: require("../assets/items/itemStroller2.png") },
+  { name: "Best Men's Jeans", area: "Downtown", date: "2d", price: "$30", image: require("../assets/items/itemJeans1.png")},
 ];
 
 const filterdata = [
@@ -53,7 +44,9 @@ const distancedata = [
 
 const ShowItem = (props) => (
   <View style={styles.card}>
-    <Image style={styles.itemImage} />
+    <Image style={styles.itemImage}                     
+      source={props.itemInfo.image}
+    />
     <Text style={styles.itemText}>{props.itemInfo.name}</Text>
     <Text style={styles.detailItemText}>
       {props.itemInfo.area} . {props.itemInfo.date}
@@ -63,6 +56,7 @@ const ShowItem = (props) => (
 );
 
 const MainPage = () => {
+  
   const [area, setArea] = useState("");
   const [items, setItems] = useState([]);
 
@@ -74,14 +68,32 @@ const MainPage = () => {
     { label: "36K", value: "36K" },
   ]);
 
-  const navigation = useNavigation();
+  const [search, setSearch] = useState('');
 
+  const route = useRoute();
+  const keyWord = route.params?.keyWord;
+
+  const navigation = useNavigation();
+ 
   useEffect(() => {
     setArea("Downtown");
     setItems(itemdata);
+    setSearch('');
     // setDistances(distancedata);
   }, []);
 
+  const updateSearch = (search) => {
+    setSearch({search});
+  }
+
+  const onTextInputPress = () => {
+    //setSearch("Click");
+    //alert("Hello...");
+    //navigation.navigate("MainSearch");
+    navigation.navigate("MainSearch", {
+      paramKey: "Param KEYWORD"
+    });
+  }
   // const onGenderOpen = useCallback(() => {
   //   //
   // }, []);
@@ -104,13 +116,23 @@ const MainPage = () => {
           />
       </View>
     </View>
+    {/* <SearchBar
+      lightTheme
+        placeholder="Type Here..."
+        onChangeText = {updateSearch}
+        value={search}
+      /> */}
     <View style={styles.searchBar}>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Search for anything"
-          value={""}
-          onChangeText={""}
-        />
+        <TouchableOpacity onPress={onTextInputPress}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Search for anything"
+            // onTouchStart={onTextInputPress} //only work on IOS
+            //value={route?.params?.paramKey}
+            value={keyWord}
+            editable={false}
+          />
+        </TouchableOpacity>
                 <Image
                     source={require('../assets/Icons/icon_filter.png')}
                     //resizeMode = 'contain'
@@ -201,17 +223,21 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   inputText: {
-    width: "70%",
-    marginLeft: 10,
+    width: "110%",
+    //marginLeft: 10,
     fontSize: 24,
     color: "#979797",
-    backgroundColor: "lightgrey",
-    padding: 5,
+    backgroundColor: "white",
+    borderColor: "lightgray",
+    borderWidth: 2,
+    borderRadius: 10,
+    padding: 10,
   },
   itemImage: {
     width: "100%",
     height: 240,
     backgroundColor: "#ddd",
+    borderRadius: 10,
   },
   dropdownGender: {
     marginHorizontal: 10,
