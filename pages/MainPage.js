@@ -16,26 +16,16 @@ import DropDownPicker from "react-native-dropdown-picker";
 import {SearchBar} from 'react-native-elements';
 
 const itemdata = [
-  { name: "HOMCOM FAN", area: "Downtown", date: "1d", price: "$50" },
-  {
-    name: "Ikea black out curtain",
-    area: "Downtown",
-    date: "2d",
-    price: "$150",
-  },
-  {
-    name: "Bell Motorcycle helmet for kids",
-    area: "Downtown",
-    date: "4d",
-    price: "$55",
-  },
-  { name: "Bag", area: "Downtown", date: "4d", price: "$20" },
-  { name: "Oriental cup", area: "Downtown", date: "4d", price: "$190" },
-  { name: "Jumper", area: "Downtown", date: "20d", price: "$59" },
-  { name: "snikers", area: "Downtown", date: "3d", price: "$210" },
-  { name: "ivory curtain", area: "Downtown", date: "5d", price: "$70" },
-  { name: "Sweater", area: "Downtown", date: "5d", price: "$20" },
-  { name: "Jeans", area: "Downtown", date: "2d", price: "$30" },
+  { name: "Baby mobile on Sale!", area: "Downtown", date: "4d", price: "$17", image: require("../assets/items/itemMobile1.png")},
+  { name: "Good stroller", area: "North Vancouver", date: "5d", price: "$6", image: require("../assets/items/itemStroller1.png")},
+  { name: "Baby toy! almost new!",area: "Downtown", date: "1d",price: "$17", image: require("../assets/items/itemToy2.png")},
+  { name: "Good condition toy", area: "Downtown", date: "4d", price: "$6", image: require("../assets/items/itemToy1.png")},
+  { name: "Baby swimsuit&gears", area: "West end", date: "1d", price: "$17", image: require("../assets/items/itemSwim1.png") },
+  { name: "Never used toy", area: "Downtown", date: "5d", price: "$6", image: require("../assets/items/itemToy3.png") },
+  { name: "Swedish Stroller", area: "Vancouver", date: "3d", price: "$210", image: require("../assets/items/itemStroller4.png") },
+  { name: "Vintage Stroller", area: "Downtown", date: "5d", price: "$70", image: require("../assets/items/itemStroller3.png")},
+  { name: "Norwegian Stroller", area: "Burnaby", date: "2d", price: "$55", image: require("../assets/items/itemStroller2.png") },
+  { name: "Best Men's Jeans", area: "Downtown", date: "2d", price: "$30", image: require("../assets/items/itemJeans1.png")},
 ];
 
 const filterdata = [
@@ -54,7 +44,9 @@ const distancedata = [
 
 const ShowItem = (props) => (
   <View style={styles.card}>
-    <Image style={styles.itemImage} />
+    <Image style={styles.itemImage}                     
+      source={props.itemInfo.image}
+    />
     <Text style={styles.itemText}>{props.itemInfo.name}</Text>
     <Text style={styles.detailItemText}>
       {props.itemInfo.area} . {props.itemInfo.date}
