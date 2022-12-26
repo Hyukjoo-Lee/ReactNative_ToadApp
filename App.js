@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import MainPageSearch from "./pages/MainPageSearch";
+import ItemDetail from "./pages/ItemDetail";
 import SplashPage from "./pages/SplashPage";
 import Tabs from "./navigation/Tabs";
 import Chat from "./pages/ChatPage";
@@ -50,6 +51,11 @@ export default function App() {
           // options={{ headerShown: false }}
           name="MainSearch"
           component={MainPageSearch}
+        />
+        <Stack.Screen
+          // options={{ headerShown: false }}
+          name="ItemDetail"
+          component={ItemDetail}
         />
         <Stack.Screen
           options={{ headerShown: false }}
