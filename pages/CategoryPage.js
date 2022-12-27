@@ -1,57 +1,131 @@
-// 20221109 Add CategoryPage by Jessi
+// 20221224 Add CategoryPage by Jessi
+
+// create category table on DB and connect DB
+
+
 
 import { useState } from "react";
-import { View, StyleSheet, Text, TextInput, Image } from "react-native";
-import DropDownPicker from "react-native-dropdown-picker";
+import { 
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  Button
+} from "react-native";
+
+import { useNavigation } from "@react-navigation/native";
+
+const styles = StyleSheet.create({
+  container: {
+    // flex: 1,
+  },
+  //Choose category title container ---------------------------
+  container_1: {
+    margin: 10,
+    height: 50,
+    width: "100%",
+  },
+  title: {
+    fontWeight: "500",
+    fontSize: 32,
+    textAlign: "center",
+    
+    marginHorizontal: 90,   
+  },
+  titleUnderLine: {
+    top: 5,
+    height: 1,
+    backgroundColor: "black",
+    opacity: 0.3,                
+    marginTop: 10,
+    marginBottom: 10,
+  },
+
+// category list container -------------------
+  container_2: {
+    flex: 0.6,
+    margin: 10,
+  },
+  contentContainer: {
+    // flex: 1,
+    width: "100%",
+    height: 70,
+    
+  },  
+  contentTitle: {
+    marginTop: 10,
+    marginLeft: 10,
+    fontSize: 20,
+    color: "#979797",
+  },
+});
+
 
 /**
  * CategoryPage by Jessi
  */
 const CategoryPage = () => {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    { label: "Apple", value: "apple" },
-    { label: "Banana", value: "banana" },
-  ]);
+
+  const navigation = useNavigation();
+
+  const handleCategory = () => {
+    navigation.navigate("sell");
+  };
 
   return (
-    <View>
-      <Text> Hello CategoryPage :D </Text>
-      <DropDownPicker
-        open={open}
-        value={value}
-        items={items}
-        setOpen={setOpen}
-        setValue={setValue}
-        setItems={setItems}
-      />
+    <View style={styles.container}>
+
+        {/* Choose category title container */}    
+        <View style={styles.container_1}>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            
+            <Button
+                title="<"
+                onPress={{}}
+              />
+
+            <Text style={styles.title}> Choose category </Text>
+
+          </View>
+
+          <View style={styles.titleUnderLine}/>
+        </View>
+
+
+        {/* Category list */}
+        <View style={styles.container_2}>
+
+          {/* Clothing Content */}
+          <View style={styles.contentContainer}>
+            <Text style={styles.contentTitle}>Clothing</Text>
+            <View style={styles.titleUnderLine}/>
+          </View>
+          
+          {/* Shoes Content */}
+          <View style={styles.contentContainer}>
+            <Text style={styles.contentTitle}>Shoes</Text>
+            <View style={styles.titleUnderLine}/>
+          </View>
+
+          {/* Accessories Content */}
+          <View style={styles.contentContainer}>
+            <Text style={styles.contentTitle}>Accessories</Text>
+            <View style={styles.titleUnderLine}/>
+          </View>
+
+
+        </View>
+
+
+  
     </View>
-    // <NavigationContainer>
-    //  <Tab.Navigator
-    //   tabBarOptions={{
-    //     labelStyle:{fontSize:18},
-    //     activeTintColor: 'red'
-
-    //   }}
-    //   >
-    //       <Tab.Screen
-    //         name = "Home"
-    //         component={HomePage}
-    //       />
-
-    //       <Tab.Screen
-    //         name = "Splash"
-    //         component={SplashPage}
-    //       />
-
-    //       <Tab.Screen
-    //         name = "SignUp"
-    //         component={SignUpPage}
-    //       />
-
-    //   </Tab.Navigator>
-    // </NavigationContainer>
   );
 };
 

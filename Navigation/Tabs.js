@@ -205,7 +205,7 @@ const Tabs = () => {
       />
 
       <Tab.Screen
-        name="Sell"
+        name="Post"
         component={SellPage}
         options={{
           tabBarIcon: ({ focused }) => (
