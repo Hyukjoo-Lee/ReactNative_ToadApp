@@ -44,6 +44,7 @@ const distancedata = [
 
 const ShowItem = (props) => (
   <View style={styles.card}>
+    <TouchableOpacity onPress={() => props.onPress(props.itemInfo)}>
     <Image style={styles.itemImage}                     
       source={props.itemInfo.image}
     />
@@ -52,6 +53,7 @@ const ShowItem = (props) => (
       {props.itemInfo.area} . {props.itemInfo.date}
     </Text>
     <Text style={styles.price}>{props.itemInfo.price}</Text>
+    </TouchableOpacity>
   </View>
 );
 
@@ -92,6 +94,13 @@ const MainPage = () => {
     //navigation.navigate("MainSearch");
     navigation.navigate("MainSearch", {
       paramKey: "Param KEYWORD"
+    });
+  }
+
+  const onItemPress = (item) => {
+    
+    navigation.navigate("ItemDetail", {
+      item: item
     });
   }
   // const onGenderOpen = useCallback(() => {
@@ -156,7 +165,7 @@ const MainPage = () => {
         numColumns={2}
         data={items}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <ShowItem itemInfo={item} />}
+        renderItem={({ item }) => <ShowItem onPress = {onItemPress} itemInfo={item} />}
       />
 
     </SafeAreaView>

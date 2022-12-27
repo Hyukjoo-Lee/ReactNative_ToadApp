@@ -6,13 +6,21 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import MainPageSearch from "./pages/MainPageSearch";
+import ItemDetail from "./pages/ItemDetail";
 import SplashPage from "./pages/SplashPage";
 import Tabs from "./navigation/Tabs";
-import Chat from "./pages/ChatPage";
+import { useFonts, Lexend_400Regular } from "@expo-google-fonts/lexend";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Lexend_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -50,6 +58,11 @@ export default function App() {
           // options={{ headerShown: false }}
           name="MainSearch"
           component={MainPageSearch}
+        />
+        <Stack.Screen
+          // options={{ headerShown: false }}
+          name="ItemDetail"
+          component={ItemDetail}
         />
         <Stack.Screen
           options={{ headerShown: false }}
