@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useLayoutEffect } from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { Svg } from "react-native-svg";
 import {
   collection,
   addDoc,
@@ -11,7 +12,7 @@ import { Avatar } from "@rneui/base";
 import { GiftedChat } from "react-native-gifted-chat";
 import { firebaseAuth, db } from "../components/config";
 import AlarmImage from "../assets/Icons/icon_Alarm.svg";
-
+import FilterImage from "../assets/Icons/icon_Filter.svg";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -20,8 +21,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const RenderAlarmSVG = (props) => {
-  return <AlarmImage style={{ stroke: props.color, marginTop: 6.5 }} />;
+export const RenderAlarmSVG = (props) => {
+  return (
+    <AlarmImage style={{ stroke: props.color, marginTop: props.marginTop }} />
+  );
+};
+
+export const RenderFilterSVG = (props) => {
+  return (
+    <FilterImage style={{ stroke: props.color, marginTop: props.marginTop }} />
+  );
 };
 
 const Chat = ({ navigation }) => {
@@ -46,7 +55,7 @@ const Chat = ({ navigation }) => {
             marginBottom: 5,
           }}
         >
-          <RenderAlarmSVG />
+          <RenderAlarmSVG marginTop="6.5%" />
         </TouchableOpacity>
       ),
     });

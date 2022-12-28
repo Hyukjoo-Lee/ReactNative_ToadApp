@@ -16,7 +16,6 @@ import SellImage from "../assets/Icons/icon_Sell.svg";
 import AccountPage from "../pages/AccountPage";
 import { theme } from "../src/theme";
 import CustomText from "../components/CustomText";
-import SplashPage from "../pages/SplashPage";
 import MainPage from "../pages/MainPage";
 
 // To render Svg Icon Files
@@ -99,9 +98,8 @@ const Tabs = () => {
         tabBarShowLabel: false,
         tabBarStyle: {
           position: "absolute",
-          height: 70,
+          height: 100,
           elevation: 0,
-          paddingBottom: 32,
           //Shadow effect
           // ,
           // ...styles.Shadow
