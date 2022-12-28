@@ -10,12 +10,23 @@ const ItemDetail = () => {
     const item = route.params?.item;
     const navigation = useNavigation();
 
-    //alert(item.name);
+    //alert(item.title);
 
     return (
         <View style={styles.container}>
             <Image style={styles.itemImage} source={item.image} />
-            <View style={styles.infoView}></View>
+            <View style={styles.infoView}>
+                <Image source={item.userImg}/>
+                <Text>{item.userId}</Text>
+                <Text>{item.area}</Text>
+                <Text>{item.point}</Text>
+                <Text>{item.status}</Text>
+                <Text>{item.title}</Text>
+                <Text>{item.views}</Text>
+                <Text>{item.description}</Text>
+                <Text>{item.condition}</Text>
+                <Text>{item.ages}</Text>
+            </View>
         </View>
     );
 }
