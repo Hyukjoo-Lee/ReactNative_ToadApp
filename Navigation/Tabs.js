@@ -99,9 +99,9 @@ const Tabs = () => {
         tabBarShowLabel: false,
         tabBarStyle: {
           position: "absolute",
-          bottom: 25,
+          height: 70,
           elevation: 0,
-
+          paddingBottom: 32,
           //Shadow effect
           // ,
           // ...styles.Shadow
@@ -122,9 +122,9 @@ const Tabs = () => {
         // },
 
         // tabBarBackground: () => {
-        //     <View>
-        //         <Image source={require('../assets/Icons/Icon_TabBackground.png')} />
-        //     </View>
+        //   <View>
+        //     <Image source={require("../assets/Icons/Icon_TabBackground.png")} />
+        //   </View>;
         // },
 
         // tabBarBackground: {
