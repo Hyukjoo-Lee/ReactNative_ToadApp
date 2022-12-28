@@ -2,7 +2,6 @@
 import {
   StyleSheet,
   Text,
-  TextInput,
   Image,
   View,
   FlatList,
@@ -10,32 +9,75 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import React, { useEffect, useState} from "react";
-import { useNavigation, useRoute  } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import DropDownPicker from "react-native-dropdown-picker";
-import {SearchBar} from 'react-native-elements';
+import { SearchBar } from "react-native-elements";
+import { theme } from "../src/theme";
+import { RenderAlarmSVG, RenderFilterSVG } from "./ChatPage";
+import { TextInput } from "react-native-paper";
 
 const itemdata = [
-  { title: "Baby mobile on Sale!", area: "Downtown", date: "4d", price: "$17", status: "Active", views:3, 
+  { 
+    title: "Baby mobile on Sale!", 
+    area: "Downtown", 
+    date: "4d", 
+    price: "$17", 
+    status: "Active", 
+    views:3, 
     description:"Clean Kid stroller on sale. No damage or dent Very good condition.",
-    condition:"Like new", ages:"1yrs-2yrs", 
-    image: require("../assets/items/itemMobile1.png"), userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", userPoint: 15},
-  { title: "Good stroller", area: "North Vancouver", date: "5d", price: "$56", status: "Active", views:10, 
+    condition:"Like new", 
+    ages:"1yrs-2yrs", 
+    image: require("../assets/items/itemMobile1.png"), 
+    userImg:require("../assets/items/userPhoto1.png"),
+    userId:"haribo1927", 
+    userPoint: 15
+  },
+  { 
+    title: "Good stroller", 
+    area: "North Vancouver", 
+    date: "5d", 
+    price: "$56", 
+    status: "Active", 
+    views:10, 
     description:"It is a new product that never be used. Very comfortable.",
-    condition:"New", ages:"1yrs-2yrs",
-    image: require("../assets/items/itemStroller1.png"), userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", userPoint: 5},
-  { title: "Baby toy! almost new!",area: "Downtown", date: "1d",price: "$17", status: "Active", views:51, 
+    condition:"New", 
+    ages:"1yrs-2yrs",
+    image: require("../assets/items/itemStroller1.png"), 
+    userImg:require("../assets/items/userPhoto1.png"),
+    userId:"haribo1927", 
+    userPoint: 5
+  },
+  { 
+    title: "Baby toy! almost new!",
+    area: "Downtown", 
+    date: "1d",
+    price: "$17", 
+    status: "Active", 
+    views:51, 
     description:"All babies love this toy. My kids, too. It helps your kids become smart.",
-    condition:"Good", ages:"1yrs-2yrs",
-    image: require("../assets/items/itemToy2.png"), userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", userPoint: 5},
-  { title: "Good condition toy", area: "Downtown", date: "4d", price: "$6", status: "Active", views:12, 
+    condition:"Good", 
+    ages:"1yrs-2yrs",
+    image: require("../assets/items/itemToy2.png"), 
+    userImg:require("../assets/items/userPhoto1.png"),
+    userId:"haribo1927", 
+    userPoint: 5
+  },
+  { 
+    title: "Good condition toy", 
+    area: "Downtown", 
+    date: "4d", 
+    price: "$6", 
+    status: "Active", 
+    views:12, 
     description:"All babies love this toy. Condition is really good and clean. Made with eco-friendly materials.",
-    condition:"Good", ages:"3yrs-5yrs",
-    image: require("../assets/items/itemToy1.png"),userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", userPoint: 5},
+    condition:"Good", 
+    ages:"3yrs-5yrs",
+    image: require("../assets/items/itemToy1.png"),
+    userImg:require("../assets/items/userPhoto1.png"),
+    userId:"haribo1927", 
+    userPoint: 5
+  },
   { title: "Baby swimsuit&gears", area: "West end", date: "1d", price: "$17", status: "Active", views:32, 
     description:"Kids are growing so fast. It would be one of the best choice for you in this summer",
     condition:"Like new", ages:"3yrs-5yrs",
@@ -68,37 +110,28 @@ const itemdata = [
     userId:"haribo1927", userPoint: 5},
 ];
 
-const filterdata = [
-  { name: "all" },
-  { name: "Near by X" },
-  { name: "Korean X" },
-  { name: "Under $20 X" },
-  { name: "Size Small X" },
-];
-
 const distancedata = [
-  {label: '12K', value: '12K'},
-  {label: '24K', value: '24K'},
-  {label: '36K', value: '36K'},
+  { label: "12K", value: "12K" },
+  { label: "24K", value: "24K" },
+  { label: "36K", value: "36K" },
 ];
 
 const ShowItem = (props) => (
   <View style={styles.card}>
     <TouchableOpacity onPress={() => props.onPress(props.itemInfo)}>
-    <Image style={styles.itemImage}                     
-      source={props.itemInfo.image}
-    />
-    <Text style={styles.itemText}>{props.itemInfo.title}</Text>
-    <Text style={styles.detailItemText}>
-      {props.itemInfo.area} . {props.itemInfo.date}
-    </Text>
-    <Text style={styles.price}>{props.itemInfo.price}</Text>
+      <Image style={styles.itemImage} source={props.itemInfo.image} />
+      <Text style={styles.itemText} numberOfLines={1}>
+        {props.itemInfo.title}
+      </Text>
+      <Text style={styles.detailItemText} numberOfLines={1}>
+        {props.itemInfo.area} . {props.itemInfo.date}
+      </Text>
+      <Text style={styles.price}>{props.itemInfo.price}</Text>
     </TouchableOpacity>
   </View>
 );
 
 const MainPage = () => {
-  
   const [area, setArea] = useState("");
   const [items, setItems] = useState([]);
 
@@ -110,39 +143,38 @@ const MainPage = () => {
     { label: "36K", value: "36K" },
   ]);
 
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const route = useRoute();
   const keyWord = route.params?.keyWord;
 
   const navigation = useNavigation();
- 
+
   useEffect(() => {
     setArea("Downtown");
     setItems(itemdata);
-    setSearch('');
+    setSearch("");
     // setDistances(distancedata);
   }, []);
 
   const updateSearch = (search) => {
-    setSearch({search});
-  }
+    setSearch({ search });
+  };
 
   const onTextInputPress = () => {
     //setSearch("Click");
     //alert("Hello...");
     //navigation.navigate("MainSearch");
     navigation.navigate("MainSearch", {
-      paramKey: "Param KEYWORD"
+      paramKey: "Param KEYWORD",
     });
-  }
+  };
 
   const onItemPress = (item) => {
-    
     navigation.navigate("ItemDetail", {
-      item: item
+      item: item,
     });
-  }
+  };
   // const onGenderOpen = useCallback(() => {
   //   //
   // }, []);
@@ -155,59 +187,82 @@ const MainPage = () => {
         <Text style={styles.titleText}>{area}</Text>
         <View style={styles.distancePicker}>
           <DropDownPicker
-              style={styles.dropdown}
-              open={distanceOpen}
-              value={distanceValue} //genderValue
-              items={distance}
-              setOpen={setDistanceOpen}
-              setValue={setDistanceValue}
-              setItems={setDistance}
+            containerStyle={{
+              width: 75,
+              height: 40,
+            }}
+            dropDownContainerStyle={{
+              backgroundColor: theme.neutral[200],
+              shadowOpacity: 0.8,
+              shadowRadius: 10,
+              borderColor: "rgba(22,20,10,0.1)",
+              shadowColor: "#000",
+              overflow: "visible",
+              display: "fixed",
+            }}
+            labelStyle={{
+              fontWeight: "bold",
+            }}
+            placeholder="12K"
+            textStyle={{ fontSize: 10 }}
+            open={distanceOpen}
+            value={distanceValue} //genderValue
+            items={distance}
+            setOpen={setDistanceOpen}
+            setValue={setDistanceValue}
+            setItems={setDistance}
           />
+        </View>
       </View>
-    </View>
-    {/* <SearchBar
+      {/* <SearchBar
       lightTheme
         placeholder="Type Here..."
         onChangeText = {updateSearch}
         value={search}
       /> */}
-    <View style={styles.searchBar}>
+      <View style={styles.searchBar}>
         <TouchableOpacity onPress={onTextInputPress}>
           <TextInput
             style={styles.inputText}
             placeholder="Search for anything"
-            // onTouchStart={onTextInputPress} //only work on IOS
-            //value={route?.params?.paramKey}
+            onTouchStart={onTextInputPress} //only work on IOS
+            // value={route?.params?.paramKey}
             value={keyWord}
             editable={false}
+            left={<TextInput.Icon icon="magnify" />}
           />
         </TouchableOpacity>
-                <Image
-                    source={require('../assets/Icons/icon_filter.png')}
-                    //resizeMode = 'contain'
-                    style={{
-                        width: 60,
-                        height: 60,
-                    }}
-                />
-                <Image
-                    source={require('../assets/Icons/icon_notification.png')}
-                    //resizeMode = 'contain'
-                    style={{
-                        width: 60,
-                        height: 60,
-                    }}
-                />
+        {/* <Image
+          source={require("../assets/Icons/icon_filter.png")}
+          //resizeMode = 'contain'
+          style={{
+            width: 60,
+            height: 60,
+          }}
+        /> */}
+
+        <RenderFilterSVG marginTop="2%"></RenderFilterSVG>
+        <RenderAlarmSVG marginTop="2.6%"></RenderAlarmSVG>
+
+        {/* <Image
+          source={require("../assets/Icons/icon_notification.png")}
+          //resizeMode = 'contain'
+          style={{
+            width: 60,
+            height: 60,
+          }}
+        /> */}
       </View>
-      <View></View>
+
       <FlatList
         style={styles.gridContainer}
         numColumns={2}
         data={items}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <ShowItem onPress = {onItemPress} itemInfo={item} />}
+        renderItem={({ item }) => (
+          <ShowItem onPress={onItemPress} itemInfo={item} />
+        )}
       />
-
     </SafeAreaView>
   );
 };
@@ -221,31 +276,36 @@ const styles = StyleSheet.create({
   gridContainer: {
     marginTop: 20,
   },
-  titleView:{
-    flex:1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    // justifyContent: 'space-around',
-    marginBottom: 80,
+  titleView: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    // justifyContent: "space-around",
+    marginBottom: 65,
   },
   titleText: {
     marginBottom: "1%",
-    opacity: 0.6,
     fontWeight: "medium",
-    fontSize: 32,
-    paddingLeft: 10,
-    paddingRight: 10, 
+    fontFamily: theme.default_font,
+    fontSize: 20,
+    paddingTop: 20,
+    paddingLeft: 15,
+    paddingRight: 10,
   },
-  searchBar:{
-      flex:1,
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
-      // margin: 10,
-      marginBottom: 50,
+  searchBar: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginLeft: -10,
+    justifyContent: "space-evenly",
+    marginBottom: 20,
   },
-  distancePicker:{
-    width: 80,
+  distancePicker: {
+    flex: 1,
+    // The solution: Apply zIndex to any device except Android
+    ...(Platform.OS !== "android" && {
+      zIndex: 10,
+    }),
   },
   card: {
     width: "48%",
@@ -256,35 +316,39 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   itemText: {
-    marginBottom: "1%",
+    marginTop: 5,
+    marginBottom: 5,
     fontWeight: "medium",
-    fontSize: 20,
+    fontSize: 16,
+    fontFamily: theme.default_font,
   },
   detailItemText: {
-    marginBottom: "1%",
+    marginBottom: 5,
     fontWeight: "medium",
-    fontSize: 15,
+    fontSize: 12,
+    fontFamily: theme.default_font,
     color: "#aaa",
   },
   price: {
     marginBottom: "1%",
-    fontSize: 24,
+    fontSize: 14,
     fontWeight: "bold",
+    fontFamily: theme.default_font,
   },
   inputText: {
-    width: "110%",
-    //marginLeft: 10,
-    fontSize: 24,
-    color: "#979797",
+    width: 258,
+    height: 40,
+    // minHeight: 0,
+    fontSize: 12,
+    fontFamily: theme.default_font,
     backgroundColor: "white",
     borderColor: "lightgray",
     borderWidth: 2,
-    borderRadius: 10,
-    padding: 10,
+    borderRadius: 4,
   },
   itemImage: {
-    width: "100%",
-    height: 240,
+    width: 175,
+    height: 182,
     backgroundColor: "#ddd",
     borderRadius: 10,
   },
