@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, TextInput, Image, TouchableOpacity, Dimennsions} from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import {SearchBar} from 'react-native-elements';
+import { theme } from "../src/theme";
 
 
 const ItemDetail = () => {
@@ -21,7 +22,7 @@ const ItemDetail = () => {
                 <Text>{item.area}</Text>
                 <Text>{item.point}</Text>
                 <Text>{item.status}</Text>
-                <Text>{item.title}</Text>
+                <Text style={styles.itemTitle}>{item.title}</Text>
                 <Text>{item.views}</Text>
                 <Text>{item.description}</Text>
                 <Text>{item.condition}</Text>
@@ -44,7 +45,14 @@ const styles = StyleSheet.create({
       },
     infoView:{
         flex:1,
-    }
+    },
+    itemTitle: {
+        marginTop: 5,
+        marginBottom: 5,
+        fontWeight: "medium",
+        fontSize: 16,
+        fontFamily: theme.default_font,
+    },
 });
 
 export default ItemDetail;
