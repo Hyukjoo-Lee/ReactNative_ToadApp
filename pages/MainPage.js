@@ -186,7 +186,6 @@ const MainPage = () => {
               borderColor: "rgba(22,20,10,0.1)",
               shadowColor: "#000",
               overflow: "visible",
-              display: "fixed",
             }}
             labelStyle={{
               fontWeight: "bold",
@@ -273,32 +272,32 @@ const styles = StyleSheet.create({
   },
   titleText: {
     marginBottom: "1%",
-    fontWeight: "medium",
     fontFamily: theme.default_font,
     fontSize: 20,
     paddingTop: 20,
-    paddingLeft: 15,
+    paddingLeft: 33,
     paddingRight: 10,
   },
   searchBar: {
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
-    marginLeft: -10,
+    marginLeft: -20,
     justifyContent: "space-evenly",
     marginBottom: 20,
   },
   distancePicker: {
     flex: 1,
     // The solution: Apply zIndex to any device except Android
-    ...(Platform.OS !== "android" && {
-      zIndex: 10,
-    }),
+    // ...(Platform.OS !== "android" && {
+    //   zIndex: 10,
+    // }),
   },
   card: {
     width: "48%",
-    //alignItems: 'center',
+    alignItems: "center",
     margin: "1%",
+    marginTop: "5%",
     //borderWidth : 0.5,
     //marginLeft: '2%',
     padding: 10,

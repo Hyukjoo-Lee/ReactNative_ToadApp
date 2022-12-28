@@ -1,6 +1,5 @@
 import React, { useCallback, useState, useLayoutEffect } from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
-import { Svg } from "react-native-svg";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import {
   collection,
   addDoc,
