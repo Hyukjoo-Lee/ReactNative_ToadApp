@@ -189,7 +189,7 @@ const ShowItem = (props) => (
     <TouchableOpacity onPress={() => props.onPress(props.itemInfo)}>
       <Image style={styles.itemImage} source={props.itemInfo.image} />
       <Text style={styles.itemText} numberOfLines={1}>
-        {props.itemInfo.name}
+        {props.itemInfo.title}
       </Text>
       <Text style={styles.detailItemText} numberOfLines={1}>
         {props.itemInfo.area} . {props.itemInfo.date}
