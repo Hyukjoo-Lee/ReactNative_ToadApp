@@ -17,16 +17,35 @@ const ItemDetail = () => {
         <View style={styles.container}>
             <Image style={styles.itemImage} source={item.image} />
             <View style={styles.infoView}>
-                <Image source={item.userImg}/>
-                <Text>{item.userId}</Text>
-                <Text>{item.area}</Text>
-                <Text>{item.point}</Text>
-                <Text>{item.status}</Text>
-                <Text style={styles.itemTitle}>{item.title}</Text>
-                <Text>{item.views}</Text>
-                <Text>{item.description}</Text>
-                <Text>{item.condition}</Text>
-                <Text>{item.ages}</Text>
+                <View style={styles.userInfoView}>
+                    <Image style={styles.userPhoto} source={item.userImg}/>
+                    <View style={styles.userIDnArea}>
+                        <Text style={styles.userID}>{item.userId}</Text>
+                        <Text>{item.area}</Text>
+                    </View>
+                    {/* <View style={styles.userPoint}> */}
+                        <Text style={styles.userPoint}>{item.userPoint} points</Text>
+                    {/* </View> */}
+                </View>
+                <View style={{
+                    top: 5,
+                    height: 2,
+                    backgroundColor: "grey",
+                    opacity: 0.3,                
+                    marginTop: 10,
+                    marginBottom: 10,
+                    marginLeft: 20,
+                    marginRight: 20,
+                }}
+                />
+                <View style={styles.itemDetailView}>
+                    <Text>{item.status}</Text>
+                    <Text style={styles.itemTitle}>{item.title}</Text>
+                    <Text>{item.views}</Text>
+                    <Text>{item.description}</Text>
+                    <Text>Condition {item.condition}</Text>
+                    <Text>Ages {item.ages}</Text>
+                </View>
             </View>
         </View>
     );
@@ -46,11 +65,42 @@ const styles = StyleSheet.create({
     infoView:{
         flex:1,
     },
+    userInfoView:{
+        // flex: 1,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        margin: 10,
+    },
+    userPhoto:{
+        borderRadius: 25,
+    },
+    userIDnArea : {
+        flex: 1,
+        marginTop: 10,
+        marginLeft: 20,
+        fontFamily: theme.default_font,
+    },
+    userID:{
+        fontFamily: theme.default_font,
+        fontWeight: "medium",
+        fontSize: 20,
+    },
+    userPoint: {
+        marginTop: 15,
+        marginBottom: 15,
+        marginLeft: 15,
+        fontWeight: "medium",
+        fontSize: 15,
+        fontFamily: theme.default_font,
+    },
+    itemDetailView:{
+        margin:20,
+    },
     itemTitle: {
         marginTop: 5,
         marginBottom: 5,
-        fontWeight: "medium",
-        fontSize: 16,
+        fontWeight: "bold",
+        fontSize: 25,
         fontFamily: theme.default_font,
     },
 });
