@@ -9,6 +9,11 @@ import {
   TextInput,
   TouchableOpacity,
   Button,
+
+  SafeAreaView,
+  StatusBar,
+  TouchableWithoutFeedback,
+
   Image,
   Platform,
   ActivityIndicator,
@@ -21,6 +26,54 @@ import { CheckBox } from "@rneui/base";
 import * as firebase from "../components/config";
 import * as ImagePicker from 'expo-image-picker'
 import { firebaseConfig } from "../components/config";
+
+import { PopupPage } from "./PopupPage";
+
+const popupConditionList = [
+  {
+    id: 1,
+    name: 'New'
+  },
+  {
+    id: 2,
+    name: 'Like new'
+  },
+  {
+    id: 3,
+    name: 'Good'
+  },
+  {
+    id: 4,
+    name: 'Fair'
+  },
+]
+
+const popupAgesList = [
+  {
+    id: 1,
+    name: '0-4 weeks'
+  },
+  {
+    id: 2,
+    name: '1 month-1 year'
+  },
+  {
+    id: 3,
+    name: '1-2 years'
+  },
+  {
+    id: 4,
+    name: '2-6 years'
+  },
+  {
+    id: 5,
+    name: '6-12 years'
+  },
+  {
+    id: 6,
+    name: '12-18 years'
+  },
+]
 
 
 const styles = StyleSheet.create({
@@ -73,6 +126,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#979797",
   },
+  contentOnlyTitle: {
+    marginLeft: 10,
+    fontSize: 20,
+    color: "#979797",
+  },
   contentInputContainer: {
     width: "100%",
     borderColor: "black",
@@ -85,7 +143,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     paddingHorizontal: 15,    
     paddingVertical: 10,
-    
+    fontSize: 20,    
     marginTop: 5,
   },
   priceInput: {
@@ -95,6 +153,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     paddingHorizontal: 15,
     paddingVertical: 10,
+    fontSize: 20,
     marginTop: 5,
   },  
   titleUnderLine: {
@@ -113,14 +172,21 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     paddingHorizontal: 15,
     paddingVertical: 10,
+    fontSize: 20,
     marginTop: 5,
   },
   bottomContentContainer: {
     // flex: 1,
+    // alignItems: "center",
+    // justifyContent: "center",
     width: "100%",
     height: 55,
   },
-
+  safeAreaContainer: {
+    // flex: 1,
+    // alignItems: "center",
+    // justifyContent: "center",
+  },
 
 
   nextButton: {
@@ -179,7 +245,6 @@ const styles = StyleSheet.create({
  * SellPage by Jessi
  */
 const SellPage = () => {
-  
   const [user, setUser] = useState();
   const [title, setTitle] = useState("");
 
@@ -209,9 +274,20 @@ const SellPage = () => {
   }
 
   const [description, setDescription] = useState("");
+  
+  let popupRef = React.createRef()
+
+  const onShowPopup = () => {
+    popupRef.show()
+  }
+
+  const onClosePopup = () => {
+    popupRef.close()
+  }
 
 
   if (!user) {
+    const newLocal = "dark-content";
     return (
       <View style={styles.container}>
 
@@ -277,7 +353,7 @@ const SellPage = () => {
           {/* Category page */}
           <View style={styles.contentContainer}>
             <TouchableOpacity onPress={handleCategory}>
-              <Text style={styles.contentTitle}>Category</Text>
+              <Text style={styles.contentOnlyTitle}>Category</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.titleUnderLine}/>
@@ -321,6 +397,7 @@ const SellPage = () => {
                 <View style={{ flexDirection: "row" }}>
                   {/* Trade checkbox */}
                   <CheckBox
+                    containerStyle = {{backgroundColor: 'transparent'}}
                     title="Trade"                  
                     checked={trade}
                     onPress={()=>setTrade(!trade)}
@@ -330,6 +407,7 @@ const SellPage = () => {
 
                   {/* Negotiable checkbox */}
                   <CheckBox
+                    containerStyle = {{backgroundColor: 'transparent'}}
                     title="Negotiable"
                     checked={negotiable}
                     onPress={()=>setNegotiable(!negotiable)}
@@ -381,13 +459,25 @@ const SellPage = () => {
 
           {/* Condition */}
           <View style={styles.bottomContentContainer}>
-            <Text style={styles.contentTitle}>Condition</Text>
+            <StatusBar barStyle="dark-content"/>
+            {/* <SafeAreaView style={styles.safeAreaContainer}> */}
+            <SafeAreaView>
+              <TouchableWithoutFeedback onPress={onShowPopup}>
+                <Text style={styles.contentOnlyTitle}>Condition</Text>
+              </TouchableWithoutFeedback>
+              <PopupPage
+                title="Condition"
+                ref={(target) => popupRef = target }
+                onTouchOutside ={onClosePopup}
+                data={popupConditionList}
+              />
+            </SafeAreaView>
           </View>
           <View style={styles.titleUnderLine}/>
 
           {/* Age */}
           <View style={styles.bottomContentContainer}>
-            <Text style={styles.contentTitle}>Age</Text>
+              <Text style={styles.contentOnlyTitle}>Age</Text>
           </View>
           <View style={styles.titleUnderLine}/>
 
