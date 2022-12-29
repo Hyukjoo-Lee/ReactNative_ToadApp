@@ -46,7 +46,7 @@ const itemdata = [
     image: require("../assets/items/itemStroller1.png"), 
     userImg:require("../assets/items/userPhoto1.png"),
     userId:"haribo1927", 
-    userPoint: 5
+    userPoint: 53
   },
   { 
     title: "Baby toy! almost new!",
@@ -61,7 +61,7 @@ const itemdata = [
     image: require("../assets/items/itemToy2.png"), 
     userImg:require("../assets/items/userPhoto1.png"),
     userId:"haribo1927", 
-    userPoint: 5
+    userPoint: 3
   },
   { 
     title: "Good condition toy", 
@@ -76,7 +76,7 @@ const itemdata = [
     image: require("../assets/items/itemToy1.png"),
     userImg:require("../assets/items/userPhoto1.png"),
     userId:"haribo1927", 
-    userPoint: 5
+    userPoint: 20
   },
   { 
     title: "Baby swimsuit&gears", 
@@ -91,7 +91,7 @@ const itemdata = [
     image: require("../assets/items/itemSwim1.png"),
     userImg:require("../assets/items/userPhoto1.png"),
     userId:"haribo1927", 
-    userPoint: 5
+    userPoint: 6
   },
   { 
     title: "Never used toy", 
@@ -106,7 +106,7 @@ const itemdata = [
     image: require("../assets/items/itemToy3.png"), 
     userImg:require("../assets/items/userPhoto1.png"),
     userId:"haribo1927", 
-    userPoint: 5
+    userPoint: 12
   },
   { 
     title: "Swedish Stroller", 
@@ -121,7 +121,7 @@ const itemdata = [
     image: require("../assets/items/itemStroller4.png"),
     userImg:require("../assets/items/userPhoto1.png"),
     userId:"haribo1927", 
-    userPoint: 5
+    userPoint: 90
   },
   { 
     title: "Vintage Stroller", 
@@ -136,7 +136,7 @@ const itemdata = [
     image: require("../assets/items/itemStroller3.png"), 
     userImg:require("../assets/items/userPhoto1.png"),
     userId:"haribo1927", 
-    userPoint: 5
+    userPoint: 26
   },
   { 
     title: "Norwegian Stroller", 
@@ -151,7 +151,7 @@ const itemdata = [
     image: require("../assets/items/itemStroller2.png") , 
     userImg:require("../assets/items/userPhoto1.png"),
     userId:"haribo1927", 
-    userPoint: 5
+    userPoint: 29
   },
   { 
     title: "Best Men's Jeans", 
@@ -166,7 +166,7 @@ const itemdata = [
     image: require("../assets/items/itemJeans1.png"), 
     userImg:require("../assets/items/userPhoto1.png"),
     userId:"haribo1927", 
-    userPoint: 5
+    userPoint: 31
   },
 ];
 
@@ -281,12 +281,6 @@ const MainPage = () => {
           />
         </View>
       </View>
-      {/* <SearchBar
-      lightTheme
-        placeholder="Type Here..."
-        onChangeText = {updateSearch}
-        value={search}
-      /> */}
       <View style={styles.searchBar}>
         <TouchableOpacity onPress={onTextInputPress}>
           <TextInput
@@ -299,26 +293,10 @@ const MainPage = () => {
             left={<TextInput.Icon icon="magnify" />}
           />
         </TouchableOpacity>
-        {/* <Image
-          source={require("../assets/Icons/icon_filter.png")}
-          //resizeMode = 'contain'
-          style={{
-            width: 60,
-            height: 60,
-          }}
-        /> */}
 
         <RenderFilterSVG marginTop="2%"></RenderFilterSVG>
         <RenderAlarmSVG marginTop="2.6%"></RenderAlarmSVG>
 
-        {/* <Image
-          source={require("../assets/Icons/icon_notification.png")}
-          //resizeMode = 'contain'
-          style={{
-            width: 60,
-            height: 60,
-          }}
-        /> */}
       </View>
 
       <FlatList
