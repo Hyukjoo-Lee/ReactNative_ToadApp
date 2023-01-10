@@ -16,157 +16,165 @@ import { SearchBar } from "react-native-elements";
 import { theme } from "../src/theme";
 import { RenderAlarmSVG, RenderFilterSVG } from "./ChatPage";
 import { TextInput } from "react-native-paper";
+import { firebaseAuth } from "../components/config";
 
 const itemdata = [
-  { 
-    title: "Baby mobile on Sale!", 
-    area: "Downtown", 
-    date: "4d", 
-    price: "$17", 
-    status: "Active", 
-    views:3, 
-    description:"Clean Kid stroller on sale. No damage or dent Very good condition.",
-    condition:"Like new", 
-    ages:"1yrs-2yrs", 
-    image: require("../assets/items/itemMobile1.png"), 
-    userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", 
-    userPoint: 15
+  {
+    title: "Baby mobile on Sale!",
+    area: "Downtown",
+    date: "4d",
+    price: "$17",
+    status: "Active",
+    views: 3,
+    description:
+      "Clean Kid stroller on sale. No damage or dent Very good condition.",
+    condition: "Like new",
+    ages: "1yrs-2yrs",
+    image: require("../assets/items/itemMobile1.png"),
+    userImg: require("../assets/items/userPhoto1.png"),
+    userId: "haribo1927",
+    userPoint: 15,
   },
-  { 
-    title: "Good stroller", 
-    area: "North Vancouver", 
-    date: "5d", 
-    price: "$56", 
-    status: "Active", 
-    views:10, 
-    description:"It is a new product that never be used. Very comfortable.",
-    condition:"New", 
-    ages:"1yrs-2yrs",
-    image: require("../assets/items/itemStroller1.png"), 
-    userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", 
-    userPoint: 53
+  {
+    title: "Good stroller",
+    area: "North Vancouver",
+    date: "5d",
+    price: "$56",
+    status: "Active",
+    views: 10,
+    description: "It is a new product that never be used. Very comfortable.",
+    condition: "New",
+    ages: "1yrs-2yrs",
+    image: require("../assets/items/itemStroller1.png"),
+    userImg: require("../assets/items/userPhoto1.png"),
+    userId: "haribo1927",
+    userPoint: 53,
   },
-  { 
+  {
     title: "Baby toy! almost new!",
-    area: "Downtown", 
+    area: "Downtown",
     date: "1d",
-    price: "$17", 
-    status: "Active", 
-    views:51, 
-    description:"All babies love this toy. My kids, too. It helps your kids become smart.",
-    condition:"Good", 
-    ages:"1yrs-2yrs",
-    image: require("../assets/items/itemToy2.png"), 
-    userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", 
-    userPoint: 3
+    price: "$17",
+    status: "Active",
+    views: 51,
+    description:
+      "All babies love this toy. My kids, too. It helps your kids become smart.",
+    condition: "Good",
+    ages: "1yrs-2yrs",
+    image: require("../assets/items/itemToy2.png"),
+    userImg: require("../assets/items/userPhoto1.png"),
+    userId: "haribo1927",
+    userPoint: 3,
   },
-  { 
-    title: "Good condition toy", 
-    area: "Downtown", 
-    date: "4d", 
-    price: "$6", 
-    status: "Active", 
-    views:12, 
-    description:"All babies love this toy. Condition is really good and clean. Made with eco-friendly materials.",
-    condition:"Good", 
-    ages:"3yrs-5yrs",
+  {
+    title: "Good condition toy",
+    area: "Downtown",
+    date: "4d",
+    price: "$6",
+    status: "Active",
+    views: 12,
+    description:
+      "All babies love this toy. Condition is really good and clean. Made with eco-friendly materials.",
+    condition: "Good",
+    ages: "3yrs-5yrs",
     image: require("../assets/items/itemToy1.png"),
-    userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", 
-    userPoint: 20
+    userImg: require("../assets/items/userPhoto1.png"),
+    userId: "haribo1927",
+    userPoint: 20,
   },
-  { 
-    title: "Baby swimsuit&gears", 
+  {
+    title: "Baby swimsuit&gears",
     area: "West end",
-    date: "1d", 
-    price: "$17", 
-    status: "Active", 
-    views:32, 
-    description:"Kids are growing so fast. It would be one of the best choice for you in this summer",
-    condition:"Like new", 
-    ages:"3yrs-5yrs",
+    date: "1d",
+    price: "$17",
+    status: "Active",
+    views: 32,
+    description:
+      "Kids are growing so fast. It would be one of the best choice for you in this summer",
+    condition: "Like new",
+    ages: "3yrs-5yrs",
     image: require("../assets/items/itemSwim1.png"),
-    userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", 
-    userPoint: 6
+    userImg: require("../assets/items/userPhoto1.png"),
+    userId: "haribo1927",
+    userPoint: 6,
   },
-  { 
-    title: "Never used toy", 
-    area: "Downtown", 
-    date: "5d", 
-    price: "$6", 
-    status: "Active", 
-    views:12, 
-    description:"This toy is a new. I just keep it and never use it. Made with eco-friendly materials.",
-    condition:"New", 
-    ages:"3yrs-5yrs",
-    image: require("../assets/items/itemToy3.png"), 
-    userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", 
-    userPoint: 12
+  {
+    title: "Never used toy",
+    area: "Downtown",
+    date: "5d",
+    price: "$6",
+    status: "Active",
+    views: 12,
+    description:
+      "This toy is a new. I just keep it and never use it. Made with eco-friendly materials.",
+    condition: "New",
+    ages: "3yrs-5yrs",
+    image: require("../assets/items/itemToy3.png"),
+    userImg: require("../assets/items/userPhoto1.png"),
+    userId: "haribo1927",
+    userPoint: 12,
   },
-  { 
-    title: "Swedish Stroller", 
-    area: "Vancouver", 
-    date: "3d", 
-    price: "$210", 
-    status: "Active", 
-    views:84, 
-    description:"Durable and high quality strollers in Sweden.",
-    condition:"Good", 
-    ages:"1yrs-3yrs",
+  {
+    title: "Swedish Stroller",
+    area: "Vancouver",
+    date: "3d",
+    price: "$210",
+    status: "Active",
+    views: 84,
+    description: "Durable and high quality strollers in Sweden.",
+    condition: "Good",
+    ages: "1yrs-3yrs",
     image: require("../assets/items/itemStroller4.png"),
-    userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", 
-    userPoint: 90
+    userImg: require("../assets/items/userPhoto1.png"),
+    userId: "haribo1927",
+    userPoint: 90,
   },
-  { 
-    title: "Vintage Stroller", 
-    area: "Downtown", 
-    date: "5d", 
-    price: "$70", 
-    status: "Active", 
-    views:22, 
-    description:"Vintage strollers and prams in excellent condition are a rare find and thus very collectible.",
-    condition:"Good", 
-    ages:"1yrs-3yrs",
-    image: require("../assets/items/itemStroller3.png"), 
-    userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", 
-    userPoint: 26
+  {
+    title: "Vintage Stroller",
+    area: "Downtown",
+    date: "5d",
+    price: "$70",
+    status: "Active",
+    views: 22,
+    description:
+      "Vintage strollers and prams in excellent condition are a rare find and thus very collectible.",
+    condition: "Good",
+    ages: "1yrs-3yrs",
+    image: require("../assets/items/itemStroller3.png"),
+    userImg: require("../assets/items/userPhoto1.png"),
+    userId: "haribo1927",
+    userPoint: 26,
   },
-  { 
-    title: "Norwegian Stroller", 
-    area: "Burnaby", 
-    date: "2d", 
-    price: "$55", 
-    status: "Active", 
-    views:33, 
-    description:"Bring this stroller with very affodable price.",
-    condition:"Good", 
-    ages:"1yrs-3yrs",
-    image: require("../assets/items/itemStroller2.png") , 
-    userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", 
-    userPoint: 29
+  {
+    title: "Norwegian Stroller",
+    area: "Burnaby",
+    date: "2d",
+    price: "$55",
+    status: "Active",
+    views: 33,
+    description: "Bring this stroller with very affodable price.",
+    condition: "Good",
+    ages: "1yrs-3yrs",
+    image: require("../assets/items/itemStroller2.png"),
+    userImg: require("../assets/items/userPhoto1.png"),
+    userId: "haribo1927",
+    userPoint: 29,
   },
-  { 
-    title: "Best Men's Jeans", 
-    area: "Downtown", 
-    date: "2d", 
-    price: "$30", 
-    status: "Active", 
-    views:54, 
-    description:"It is the best jean for men whether you dress them up or wear them out.",
-    condition:"New", 
-    ages:"adult",
-    image: require("../assets/items/itemJeans1.png"), 
-    userImg:require("../assets/items/userPhoto1.png"),
-    userId:"haribo1927", 
-    userPoint: 31
+  {
+    title: "Best Men's Jeans",
+    area: "Downtown",
+    date: "2d",
+    price: "$30",
+    status: "Active",
+    views: 54,
+    description:
+      "It is the best jean for men whether you dress them up or wear them out.",
+    condition: "New",
+    ages: "adult",
+    image: require("../assets/items/itemJeans1.png"),
+    userImg: require("../assets/items/userPhoto1.png"),
+    userId: "haribo1927",
+    userPoint: 31,
   },
 ];
 
@@ -249,6 +257,15 @@ const MainPage = () => {
 
   // const {control } = useForm();
 
+  // Sign out function - to go back to login page
+  const handleSignout = () => {
+    firebaseAuth
+      .signOut()
+      .then(() => {
+        navigation.replace("Splash");
+      })
+      .catch((error) => alert(error.message));
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleView}>
@@ -293,10 +310,20 @@ const MainPage = () => {
             left={<TextInput.Icon icon="magnify" />}
           />
         </TouchableOpacity>
-
-        <RenderFilterSVG marginTop="2%"></RenderFilterSVG>
-        <RenderAlarmSVG marginTop="2.6%"></RenderAlarmSVG>
-
+        <TouchableOpacity
+          // should be modified in the future
+          onPress={handleSignout}
+          style={{ marginTop: "2%" }}
+        >
+          <RenderFilterSVG />
+        </TouchableOpacity>
+        <TouchableOpacity
+          // should be modified in the future
+          onPress={onTextInputPress}
+          style={{ marginTop: "2.5%" }}
+        >
+          <RenderAlarmSVG />
+        </TouchableOpacity>
       </View>
 
       <FlatList

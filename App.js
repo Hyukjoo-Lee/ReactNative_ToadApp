@@ -10,6 +10,7 @@ import ItemDetail from "./pages/ItemDetail";
 import SplashPage from "./pages/SplashPage";
 import Tabs from "./navigation/Tabs";
 import { useFonts, Lexend_400Regular } from "@expo-google-fonts/lexend";
+import AnimationApp from "./pages/Animation";
 
 const Stack = createNativeStackNavigator();
 

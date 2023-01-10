@@ -11,10 +11,12 @@ import { useNavigation } from "@react-navigation/native";
 import { firebaseAuth } from "../components/config";
 import Checkbox from "expo-checkbox";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { theme } from "../src/theme";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: theme.shades.white,
   },
   // Profile image container
   container_1: {
@@ -64,17 +66,13 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   loginButton: {
-    backgroundColor: "lightgray",
+    backgroundColor: theme.primary[700],
     width: "100%",
     padding: 15,
     borderRadius: 10,
     alignSelf: "center",
     alignItems: "center",
     marginTop: 15,
-  },
-  loginButtonText: {
-    color: "black",
-    fontSize: 16,
   },
   // Authentification field container
   container_4: {
@@ -106,7 +104,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   loginButtonText: {
-    color: "black",
+    color: "white",
     fontSize: 16,
   },
 });
@@ -170,9 +168,22 @@ const LoginPage = () => {
             // secureTextEntry
           />
         </KeyboardAvoidingView>
-        <View style={styles.container_3}>
-          <Checkbox />
-          <Text>Remember me</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginTop: "3%",
+          }}
+        >
+          <TouchableOpacity style={{ flexDirection: "row" }}>
+            <Checkbox
+              style={{ marginRight: "5%", borderColor: theme.neutral[400] }}
+            />
+            <Text style={{ color: theme.neutral[400] }}>Remember me</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{ marginLeft: "30%" }}>
+            <Text style={{ color: theme.shades.black }}>Forgot password?</Text>
+          </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.loginButton} onPress={handleSignIn}>
           <Text style={styles.loginButtonText}>Log in</Text>

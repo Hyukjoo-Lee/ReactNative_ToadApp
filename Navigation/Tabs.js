@@ -16,6 +16,7 @@ import SellImage from "../assets/Icons/icon_Sell.svg";
 import AccountPage from "../pages/AccountPage";
 import { theme } from "../src/theme";
 import CustomText from "../components/CustomText";
+import SplashPage from "../pages/SplashPage";
 import MainPage from "../pages/MainPage";
 
 // To render Svg Icon Files
