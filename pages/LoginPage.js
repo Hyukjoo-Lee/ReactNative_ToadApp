@@ -12,29 +12,30 @@ import { firebaseAuth } from "../components/config";
 import Checkbox from "expo-checkbox";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { theme } from "../src/theme";
+import CustomText from "../components/CustomText";
+import GoogleImage from "../assets/Icons/icon_Google.svg";
+import FacebookImage from "../assets/Icons/icon_Facebook.svg";
+
+const RenderGoogleSVG = (props) => {
+  return <GoogleImage />;
+};
+const RenderFacebookSVG = (props) => {
+  return <FacebookImage />;
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.shades.white,
   },
-  // Profile image container
+  // Welcome container
   container_1: {
-    flex: 0.3,
+    flex: 0.12,
+    marginLeft: 13,
     justifyContent: "center",
   },
   title: {
-    margin: 20,
-    fontWeight: "500",
     fontSize: 24,
-  },
-  description: {
-    opacity: 0.6,
-    fontSize: 16,
-    width: "75%",
-    minheight: "4%",
-    textAlign: "center",
-    marginBottom: "5.5%",
   },
   imageField: {
     width: 300,
@@ -42,9 +43,9 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgray",
   },
   // Email field container
-  container_3: {
-    flex: 0.6,
-    margin: 10,
+  container_2: {
+    flex: 0.4,
+    margin: 13,
   },
   emailText: {
     marginTop: 10,
@@ -65,6 +66,11 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     marginTop: 5,
   },
+  // Authentification field container
+  container_3: {
+    flex: 0.55,
+    margin: 13,
+  },
   loginButton: {
     backgroundColor: theme.primary[700],
     width: "100%",
@@ -74,27 +80,30 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 15,
   },
-  // Authentification field container
-  container_4: {
-    flex: 0.9,
-    marginTop: 10,
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 20,
-  },
   googleButton: {
-    backgroundColor: "lightgray",
+    backgroundColor: theme.shades.white,
+    flexDirection: "row",
     width: "100%",
     padding: 15,
     borderRadius: 10,
+    borderColor: theme.primary[700],
+    borderWidth: 1,
     alignSelf: "center",
     alignItems: "center",
+    marginTop: 15,
+  },
+  loginButtonText: {
+    color: "white",
+    fontSize: 16,
   },
   facebookButton: {
-    backgroundColor: "lightgray",
+    backgroundColor: theme.shades.white,
+    flexDirection: "row",
     width: "100%",
     padding: 15,
     borderRadius: 10,
+    borderColor: theme.primary[700],
+    borderWidth: 1,
     alignSelf: "center",
     alignItems: "center",
     marginTop: 15,
@@ -102,10 +111,12 @@ const styles = StyleSheet.create({
   authButtonText: {
     color: "black",
     fontSize: 16,
+    paddingLeft: 70,
   },
-  loginButtonText: {
-    color: "white",
-    fontSize: 16,
+  signUpTextView: {
+    flexDirection: "row",
+    marginTop: 32,
+    justifyContent: "space-evenly",
   },
 });
 
@@ -142,24 +153,27 @@ const LoginPage = () => {
       });
   };
 
+  // Move to Signup page
+  const handleSignUp = () => {
+    navigation.navigate("SignUp");
+  };
+
   return (
     <View style={styles.container}>
-      {/* Profile image container */}
-      <View style={styles.container_1}></View>
       {/* Explanation */}
-      <View style={styles.container_2}>
-        <Text style={styles.title}>Welcome back to Toad!</Text>
+      <View style={styles.container_1}>
+        <CustomText style={styles.title}>Welcome back to Toad!</CustomText>
       </View>
       {/* Email field */}
-      <View style={styles.container_3}>
-        <Text style={styles.emailText}>Email</Text>
+      <View style={styles.container_2}>
+        <CustomText style={styles.emailText}>Email</CustomText>
         <KeyboardAvoidingView style={styles.inputContainer}>
           <TextInput
             placeholder="abc@gmail.com"
             onChangeText={(text) => setEmail(text)}
             style={styles.input}
           />
-          <Text style={styles.emailText}>Password</Text>
+          <CustomText style={styles.emailText}>Password</CustomText>
           <TextInput
             placeholder="At least 8 charaters "
             value={password}
@@ -179,14 +193,20 @@ const LoginPage = () => {
             <Checkbox
               style={{ marginRight: "5%", borderColor: theme.neutral[400] }}
             />
-            <Text style={{ color: theme.neutral[400] }}>Remember me</Text>
+            <CustomText style={{ color: theme.neutral[400] }}>
+              Remember me
+            </CustomText>
           </TouchableOpacity>
-          <TouchableOpacity style={{ marginLeft: "30%" }}>
-            <Text style={{ color: theme.shades.black }}>Forgot password?</Text>
+          <TouchableOpacity>
+            <CustomText style={{ color: theme.shades.black }}>
+              Forgot password?
+            </CustomText>
           </TouchableOpacity>
         </View>
+      </View>
+      <View style={styles.container_3}>
         <TouchableOpacity style={styles.loginButton} onPress={handleSignIn}>
-          <Text style={styles.loginButtonText}>Log in</Text>
+          <CustomText style={styles.loginButtonText}>Log in</CustomText>
         </TouchableOpacity>
         {/* A horizontal line with OR text*/}
         <View
@@ -201,24 +221,44 @@ const LoginPage = () => {
             style={{
               flex: 1,
               height: 1,
-              backgroundColor: "black",
+              backgroundColor: "#737373",
               opacity: 0.3,
             }}
           />
           <View>
-            <Text style={{ width: 70, textAlign: "center", color: "black" }}>
+            <CustomText
+              style={{ width: 70, textAlign: "center", color: "#737373" }}
+            >
               OR
-            </Text>
+            </CustomText>
           </View>
           <View
             style={{
               flex: 1,
               height: 1,
-              backgroundColor: "black",
+              backgroundColor: "#737373",
               opacity: 0.3,
             }}
           />
         </View>
+        <TouchableOpacity style={styles.googleButton} onPress={handleSignIn}>
+          <RenderGoogleSVG />
+          <CustomText style={styles.authButtonText}>
+            Log in with Google
+          </CustomText>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.facebookButton} onPress={handleSignIn}>
+          <RenderFacebookSVG />
+          <CustomText style={styles.authButtonText}>
+            Log in with Facebook
+          </CustomText>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.signUpTextView} onPress={handleSignUp}>
+          <CustomText style={{ color: theme.neutral[500] }}>
+            You do not have an account?
+          </CustomText>
+          <CustomText style={{ color: theme.neutral[800] }}>Sign Up</CustomText>
+        </TouchableOpacity>
       </View>
     </View>
   );

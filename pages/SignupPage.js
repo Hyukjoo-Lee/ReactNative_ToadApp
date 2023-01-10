@@ -1,43 +1,41 @@
-import React, { useState } from "react";
 import {
-  View,
   KeyboardAvoidingView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  View,
 } from "react-native";
-// import { GoogleSignin } from "@react-native-google-signin/google-signin";
-// import auth from "@react-native-firebase/auth";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { firebaseAuth } from "../components/config";
+import Checkbox from "expo-checkbox";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { theme } from "../src/theme";
+import CustomText from "../components/CustomText";
+import GoogleImage from "../assets/Icons/icon_Google.svg";
+import FacebookImage from "../assets/Icons/icon_Facebook.svg";
+
+const RenderGoogleSVG = (props) => {
+  return <GoogleImage />;
+};
+const RenderFacebookSVG = (props) => {
+  return <FacebookImage />;
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: theme.shades.white,
   },
-  // Profile image container
+  // What is your email container
   container_1: {
-    flex: 0.3,
+    flex: 0.12,
+    marginLeft: 13,
     justifyContent: "center",
   },
-  // Explanation container
-  container_2: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-start",
-  },
   title: {
-    margin: 20,
-    fontWeight: "500",
-    fontSize: 32,
-  },
-  description: {
-    opacity: 0.6,
-    fontSize: 16,
-    width: "75%",
-    minheight: "4%",
-    textAlign: "center",
-    marginBottom: "5.5%",
+    fontSize: 24,
   },
   imageField: {
     width: 300,
@@ -45,12 +43,13 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgray",
   },
   // Email field container
-  container_3: {
-    flex: 0.6,
-    margin: 10,
+  container_2: {
+    flex: 0.4,
+    margin: 13,
   },
   emailText: {
-    marginLeft: 10,
+    marginTop: 10,
+
     fontSize: 10,
     color: "#979797",
   },
@@ -67,8 +66,13 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     marginTop: 5,
   },
+  // Authentification field container
+  container_3: {
+    flex: 0.55,
+    margin: 13,
+  },
   nextButton: {
-    backgroundColor: "lightgray",
+    backgroundColor: theme.primary[700],
     width: "100%",
     padding: 15,
     borderRadius: 10,
@@ -76,31 +80,30 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 15,
   },
-  nextButtonText: {
-    color: "black",
-    fontSize: 16,
-  },
-  // Authentification field container
-  container_4: {
-    flex: 0.9,
-    marginTop: 10,
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 20,
-  },
   googleButton: {
-    backgroundColor: "lightgray",
+    backgroundColor: theme.shades.white,
+    flexDirection: "row",
     width: "100%",
     padding: 15,
     borderRadius: 10,
+    borderColor: theme.primary[700],
+    borderWidth: 1,
     alignSelf: "center",
     alignItems: "center",
+    marginTop: 15,
+  },
+  nextButtonText: {
+    color: "white",
+    fontSize: 16,
   },
   facebookButton: {
-    backgroundColor: "lightgray",
+    backgroundColor: theme.shades.white,
+    flexDirection: "row",
     width: "100%",
     padding: 15,
     borderRadius: 10,
+    borderColor: theme.primary[700],
+    borderWidth: 1,
     alignSelf: "center",
     alignItems: "center",
     marginTop: 15,
@@ -108,25 +111,20 @@ const styles = StyleSheet.create({
   authButtonText: {
     color: "black",
     fontSize: 16,
+    paddingLeft: 70,
   },
-  nextButtonText: {
-    color: "black",
-    fontSize: 16,
+  signInTextView: {
+    flexDirection: "row",
+    marginTop: 32,
+    justifyContent: "space-evenly",
   },
 });
 
-/**
- * Signup Page - Google Login is inactivated temporarily.
- * Because the expo-google package is officially deprecated by the expo.
- * We have to use the development build method (For IOS development, Apple Developer membership required).
- * It will be activated when we deploy our application.
- */
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
 
   // const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
-
   const navigation = useNavigation();
 
   // GoogleSignin.configure({
@@ -149,6 +147,11 @@ const SignUpPage = () => {
     navigation.navigate("Password", {
       email: email,
     });
+  };
+
+  // Move to Login page
+  const handleSignIn = () => {
+    navigation.navigate("Login");
   };
 
   // const onGoogleButtonPress = async () => {
@@ -185,15 +188,15 @@ const SignUpPage = () => {
   if (!user) {
     return (
       <View style={styles.container}>
-        {/* Profile image container */}
-        <View style={styles.container_1}></View>
         {/* Explanation */}
-        <View style={styles.container_2}>
-          <Text style={styles.title}>What's your email address</Text>
+        <View style={styles.container_1}>
+          <CustomText style={styles.title}>
+            What's your email address?
+          </CustomText>
         </View>
         {/* Email field */}
-        <View style={styles.container_3}>
-          <Text style={styles.emailText}>Email</Text>
+        <View style={styles.container_2}>
+          <CustomText style={styles.emailText}>Email</CustomText>
           <KeyboardAvoidingView style={styles.inputContainer}>
             <TextInput
               placeholder="abc@gmail.com"
@@ -201,10 +204,11 @@ const SignUpPage = () => {
               style={styles.input}
             />
           </KeyboardAvoidingView>
+        </View>
+        <View style={styles.container_3}>
           <TouchableOpacity style={styles.nextButton} onPress={handleSignUp}>
-            <Text style={styles.nextButtonText}>Next</Text>
+            <CustomText style={styles.nextButtonText}>Next</CustomText>
           </TouchableOpacity>
-
           {/* A horizontal line with OR text*/}
           <View
             style={{
@@ -218,34 +222,54 @@ const SignUpPage = () => {
               style={{
                 flex: 1,
                 height: 1,
-                backgroundColor: "black",
+                backgroundColor: "#737373",
                 opacity: 0.3,
               }}
             />
             <View>
-              <Text style={{ width: 70, textAlign: "center", color: "black" }}>
+              <CustomText
+                style={{ width: 70, textAlign: "center", color: "#737373" }}
+              >
                 OR
-              </Text>
+              </CustomText>
             </View>
             <View
               style={{
                 flex: 1,
                 height: 1,
-                backgroundColor: "black",
+                backgroundColor: "#737373",
                 opacity: 0.3,
               }}
             />
           </View>
-        </View>
-        {/* Authentification field */}
-        {/* <View style={styles.container_4}>
-          <TouchableOpacity
-            style={styles.googleButton}
-            onPress={onGoogleButtonPress}
-          >
-            <Text style={styles.authButtonText}>Sign up with your Google</Text>
+          <TouchableOpacity style={styles.googleButton} onPress={handleSignUp}>
+            <RenderGoogleSVG />
+            <CustomText style={styles.authButtonText}>
+              Register with Google
+            </CustomText>
           </TouchableOpacity>
-        </View> */}
+          <TouchableOpacity
+            style={styles.facebookButton}
+            onPress={handleSignUp}
+          >
+            <RenderFacebookSVG />
+            <CustomText style={styles.authButtonText}>
+              Register with Facebook
+            </CustomText>
+          </TouchableOpacity>
+          {/* <TouchableOpacity style={styles.signInTextView}onPress={onGoogleButtonPress}> */}
+          <TouchableOpacity
+            style={styles.signInTextView}
+            onPress={handleSignIn}
+          >
+            <CustomText style={{ color: theme.neutral[500] }}>
+              Do you already have an account?
+            </CustomText>
+            <CustomText style={{ color: theme.neutral[800] }}>
+              Sign In
+            </CustomText>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }

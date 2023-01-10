@@ -7,43 +7,33 @@ import {
   View,
   KeyboardAvoidingView,
   StyleSheet,
-  Text,
   TextInput,
-  Image,
   TouchableOpacity,
 } from "react-native";
+import { theme } from "../src/theme";
+import CustomText from "../components/CustomText";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: theme.shades.white,
   },
-
-  // Profile image container
+  // Set password text container
   container_1: {
-    flex: 0.3,
+    flex: 0.12,
+    marginLeft: 13,
     justifyContent: "center",
   },
-  profileImg: {
-    width: "16%",
-    height: "70%",
-    margin: 10,
-    backgroundColor: "lightgray",
-  },
-  // // Password field container
-  container_2: {
-    flex: 0.6,
-    //alignItems: "center",
-    margin: 20,
-    justifyContent: "flex-start",
-  },
   title: {
-    marginBottom: "1%",
-    opacity: 0.6,
-    fontWeight: "500",
-    fontSize: 32,
+    fontSize: 24,
+  },
+  // Password field container
+  container_2: {
+    flex: 0.4,
+    margin: 13,
   },
   passwordText: {
-    marginLeft: 10,
+    marginTop: 10,
     fontSize: 10,
     color: "#979797",
   },
@@ -54,32 +44,19 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     backgroundColor: "white",
-    fontStyle: "italic",
-    color: "#979797",
     paddingHorizontal: 15,
     borderWidth: 0.2,
     paddingVertical: 10,
     borderRadius: 7,
     marginTop: 5,
   },
-
-  // Empty container
-  container_3: {
-    flex: 0.6,
-    margin: 20,
-  },
-
   // Next Button container
-  container_4: {
-    flex: 0.6,
-    marginTop: 10,
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 20,
+  container_3: {
+    flex: 0.55,
+    margin: 13,
   },
-
   nextButton: {
-    backgroundColor: "lightgray",
+    backgroundColor: theme.primary[700],
     width: "100%",
     padding: 15,
     borderRadius: 10,
@@ -88,16 +65,12 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   nextButtonText: {
-    color: "black",
+    color: "white",
     fontSize: 16,
   },
 });
 
-/**
- * Password Page by Jessi
- */
-
-const PasswordPage = () => {
+const SignUpPage = () => {
   const [password, setPassword] = useState("");
   const route = useRoute();
   const email = route.params.email;
@@ -109,7 +82,7 @@ const PasswordPage = () => {
     const unsubscribe = firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
         navigation.navigate("Main", {
-          keyWord: ''
+          keyWord: "",
         });
       }
     });
@@ -138,17 +111,13 @@ const PasswordPage = () => {
 
   return (
     <View style={styles.container}>
-      {/* Profile image container */}
+      {/* Explanation */}
       <View style={styles.container_1}>
-        <Image style={styles.profileImg}></Image>
+        <CustomText style={styles.title}>Set your password</CustomText>
       </View>
-
-      {/* Password field container */}
+      {/* Password field */}
       <View style={styles.container_2}>
-        <Text style={styles.title}>Set your password </Text>
-
-        <Text style={styles.passwordText}>Password</Text>
-
+        <CustomText style={styles.passwordText}>Password</CustomText>
         <KeyboardAvoidingView style={styles.inputContainer}>
           <TextInput
             placeholder="At least 8 charaters "
@@ -159,20 +128,14 @@ const PasswordPage = () => {
           />
         </KeyboardAvoidingView>
       </View>
-
-      {/* Empty container */}
-      <View style={styles.container_3}></View>
-
       {/* Next Button container*/}
-      <View style={styles.container_4}>
-        <TouchableOpacity style={styles.nextButton}>
-          <Text style={styles.nextButtonText} onPress={handleSignUp}>
-            Next
-          </Text>
+      <View style={styles.container_3}>
+        <TouchableOpacity style={styles.nextButton} onPress={handleSignUp}>
+          <CustomText style={styles.nextButtonText}>Next</CustomText>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
 
-export default PasswordPage;
+export default SignUpPage;

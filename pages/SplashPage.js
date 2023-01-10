@@ -30,9 +30,10 @@ const styles = StyleSheet.create({
   title: {
     alignSelf: "flex-start",
     marginLeft: "5%",
+    marginTop: "3%",
     fontFamily: theme.default_font,
     fontWeight: "500",
-    fontSize: 36,
+    fontSize: 34,
     color: theme.primary[900],
   },
   description: {
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     paddingTop: "1%",
     marginLeft: "5%",
     alignSelf: "flex-start",
-    color: theme.shades.black,
+    color: "#555555",
   },
   btnContainer: {
     flex: 0.8,
