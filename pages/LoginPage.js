@@ -155,7 +155,7 @@ const LoginPage = () => {
 
   // Move to Signup page
   const handleSignUp = () => {
-    navigation.navigate("SignUp");
+    navigation.navigate("SignUp_2");
   };
 
   return (

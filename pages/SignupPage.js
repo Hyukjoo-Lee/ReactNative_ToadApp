@@ -144,7 +144,7 @@ const SignUpPage = () => {
 
   // Sign up function
   const handleSignUp = () => {
-    navigation.navigate("Password", {
+    navigation.navigate("SignUp_2", {
       email: email,
     });
   };

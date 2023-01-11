@@ -1,6 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import PasswordPage from "./pages/PasswordPage";
 import SignUpPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -8,6 +7,7 @@ import MainPage from "./pages/MainPage";
 import MainPageSearch from "./pages/MainPageSearch";
 import ItemDetail from "./pages/ItemDetail";
 import SplashPage from "./pages/SplashPage";
+import SignUpPage_2 from "./pages/SignupPage_2";
 import Tabs from "./navigation/Tabs";
 import { useFonts, Lexend_400Regular } from "@expo-google-fonts/lexend";
 import AnimationApp from "./pages/Animation";
@@ -42,13 +42,13 @@ export default function App() {
         />
         <Stack.Screen
           // options={{ headerShown: false }}
-          name="Login"
-          component={LoginPage}
+          name="SignUp_2"
+          component={SignUpPage_2}
         />
         <Stack.Screen
           // options={{ headerShown: false }}
-          name="Password"
-          component={PasswordPage}
+          name="Login"
+          component={LoginPage}
         />
         <Stack.Screen
           // options={{ headerShown: false }}

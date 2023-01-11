@@ -360,7 +360,7 @@ const styles = StyleSheet.create({
     fontFamily: theme.default_font,
     fontSize: 20,
     paddingTop: 20,
-    paddingLeft: 33,
+    paddingLeft: 15,
     paddingRight: 10,
   },
   searchBar: {
@@ -385,7 +385,6 @@ const styles = StyleSheet.create({
     marginTop: "5%",
     //borderWidth : 0.5,
     //marginLeft: '2%',
-    padding: 10,
   },
   itemText: {
     marginTop: 5,
