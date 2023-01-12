@@ -8,7 +8,7 @@ import MainPage from "./pages/MainPage";
 import MainPageSearch from "./pages/MainPageSearch";
 import ItemDetail from "./pages/ItemDetail";
 import SplashPage from "./pages/SplashPage";
-import Tabs from "./Navigation/Tabs";
+import Tabs from "./navigation/Tabs";
 import { useFonts, Lexend_400Regular } from "@expo-google-fonts/lexend";
 
 const Stack = createNativeStackNavigator();
