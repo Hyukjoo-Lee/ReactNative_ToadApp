@@ -17,6 +17,7 @@ import { theme } from "../src/theme";
 import { RenderAlarmSVG, RenderFilterSVG } from "./ChatPage";
 import { TextInput } from "react-native-paper";
 import { firebaseAuth } from "../components/config";
+import * as Location from "expo-location";
 
 const itemdata = [
   {
@@ -208,6 +209,9 @@ const ShowItem = (props) => (
 );
 
 const MainPage = () => {
+  // Location
+  const [city, setCity] = useState("Loading...");
+  const [ok, setLocationOk] = useState(true);
   const [area, setArea] = useState("");
   const [items, setItems] = useState([]);
 
@@ -227,8 +231,8 @@ const MainPage = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    setArea("Downtown");
     setItems(itemdata);
+    askLocation();
     setSearch("");
     // setDistances(distancedata);
   }, []);
@@ -257,6 +261,23 @@ const MainPage = () => {
 
   // const {control } = useForm();
 
+  const askLocation = async () => {
+    const { granted } = await Location.requestForegroundPermissionsAsync();
+    if (!granted) {
+      setLocationOk(false);
+    }
+
+    const {
+      coords: { latitude, longitude },
+    } = await Location.getCurrentPositionAsync({ accuracy: 5 });
+
+    const location = await Location.reverseGeocodeAsync(
+      { latitude, longitude },
+      { useGoogleMaps: false }
+    );
+    setCity(location[0].city);
+  };
+
   // Sign out function - to go back to login page
   const handleSignout = () => {
     firebaseAuth
@@ -269,7 +290,8 @@ const MainPage = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleView}>
-        <Text style={styles.titleText}>{area}</Text>
+        {/* Default location is USA, you can test it on your phone if you want to see the actual locaiton  */}
+        <Text style={styles.titleText}>{city}</Text>
         <View style={styles.distancePicker}>
           <DropDownPicker
             containerStyle={{
@@ -352,6 +374,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
+    marginLeft: "3.2%",
     // justifyContent: "space-around",
     marginBottom: 65,
   },
